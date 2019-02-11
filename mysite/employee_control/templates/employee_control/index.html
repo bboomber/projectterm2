@@ -1,0 +1,9 @@
+{% if emp_list %}
+    <ul>
+    {% for employee in emp_list %}
+        <li><a href="/employee/{{ employee.agent_code }}">{{employee.agent_code}}</a> {{ employee.fname }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
