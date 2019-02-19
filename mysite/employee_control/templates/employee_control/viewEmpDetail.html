@@ -1,13 +1,24 @@
-{% extends "./base.html" %}
+{% extends "mysite/base.html" %}
 {% block content %}
-<div class="container">
-    <h1>ข้อมูลพนักงาน</h1>
-    {{ employee.fname }}
-    {{ employee.lname }}
-    {{ employee.id_card }}
-    {{ employee.phone1 }}
-    {{ employee.phone2 }}
-    {{ employee.email }}
-    {{ employee.address }}
-</div>
-{% endblock %}
+
+
+<body class="bg-gray">
+    <div class="bg-white">
+        <div class="container mt-5">
+            <br />
+            <h1>ข้อมูลพนักงาน</h1>
+            <hr>
+            ชื่อ :{{ employee.fname }}<br />
+            นามสกุล :{{ employee.lname }}<br />
+            เลขบัตรประชาชน :{{ employee.id_card }}<br />
+            เบอร์โทรศัพท์ 1 :{{ employee.phone1 }}<br />
+            เบอร์โทรศัพท์ 2 :{{ employee.phone2 }}<br />
+            อีเมลล์ :{{ employee.email }}<br />
+            ที่อยู่ :{{ employee.address }}<br />
+            <hr>
+            <button type="button" class="btn btn-warning">แก้ไขข้อมูล</button>
+            <br />
+            <br />
+        </div>
+    </div>
+    {% endblock %}
