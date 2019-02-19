@@ -17,3 +17,11 @@
 .bg-white{
     background-color: rgb(255, 255, 255);
 }
+
+.bg-darkblue{
+    background-color: rgb(3, 39, 68);
+}
+
+.text-white{
+    color: white;
+}
