@@ -18,7 +18,7 @@ def get_name(request):
     if request.method =='POST':
         form = Nameform(request.POST)
         if form.is_valid():
-            return HttpResponseRedirect('/thank/')
+            return HttpResponseRedirect('/employee/')
     else:
         form = Nameform()
     return render(request, 'employee_control/name.html', {'form': form})

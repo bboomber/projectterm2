@@ -3,10 +3,10 @@
 
 {% load crispy_forms_tags %}
 <div class="container">
-    <form action="/thank/" method="post">
+    <form action="/employee/" method="post">
         {% csrf_token %}
         {{ form|crispy }}
-        <input type="submit" value="submit">
+        <button type="submit" class="btn btn-primary">Primary</button>
     </form>
 </div>
 
