@@ -5,6 +5,7 @@ from django.dispatch import receiver
 
 # Create your models here.
 class Employee(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     agent_code = models.CharField(max_length=30)
     fname = models.CharField(max_length=30)
     lname = models.CharField(max_length=30)
@@ -14,6 +15,7 @@ class Employee(models.Model):
     email = models.EmailField(max_length=30)
     address = models.CharField(max_length=200)
     remark = models.CharField(max_length=200)
+    
     def __str__(self):
         return self.agent_code
 
@@ -21,4 +23,4 @@ class Employee(models.Model):
 def update_Employee(sender, instance, created, **kwargs):
     if created:
         Employee.objects.create(user=instance)
-    instance.Employee.save()
+    instance.employee.save()
