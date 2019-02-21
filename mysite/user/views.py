@@ -1,5 +1,4 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.template import loader
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login as auth_login
 from django.contrib import messages
@@ -13,8 +12,8 @@ def signup(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Account created for {username}!')
-            return redirect('/employee')
+            messages.success(request, f'Account created for {username}! You can login now')
+            return redirect('/login')
     else:
         form = UserRegisterForm()
     return render(request, 'user/signup.html', {'form': form})

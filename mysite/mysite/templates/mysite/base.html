@@ -41,16 +41,17 @@
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
+                <a href="/login/"><button class="btn btn-outline-light my-2 my-sm-0" type="button">log In</button></a>
                 <a href="/signup/"><button class="btn btn-outline-warning my-2 my-sm-0" type="button">sign up</button></a>
             </form>
         </div>
     </nav>
     {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags }}">
-                {{ message }}
-            </div>
-        {% endfor %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+        {{ message }}
+    </div>
+    {% endfor %}
     {% endif %}
 
 
