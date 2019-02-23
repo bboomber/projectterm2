@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login as auth_login, authenticate, login
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm
 
 
@@ -32,3 +33,7 @@ def signup(request):
     else:
         form = UserRegisterForm()
     return render(request, 'user/signup.html', {'form': form})
+
+@login_required
+def profile(request):
+    return render(request, 'user/profile.html')

@@ -18,6 +18,10 @@
     background-color: rgb(255, 255, 255);
 }
 
+.bg-dark{
+    background-color: rgb(0, 0, 0);
+}
+
 .bg-darkblue{
     background-color: rgb(3, 39, 68);
 }
