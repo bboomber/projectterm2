@@ -17,7 +17,7 @@ class Employee(models.Model):
     remark = models.CharField(max_length=200)
     
     def __str__(self):
-        return self.agent_code
+        return self.agent_code + ' Detail'
 
 @receiver(post_save, sender=User)
 def update_Employee(sender, instance, created, **kwargs):
