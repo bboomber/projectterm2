@@ -1,15 +1,18 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
+from django.contrib.auth.decorators import login_required
 from .models import Employee
 from .forms import Nameform
 
 # Create your views here.
 
+@login_required
 def viewAllEmp(request):
     emp_list = Employee.objects.order_by('agent_code')
     return render(request, 'employee_control/viewAllEmp.html', {'emp_list': emp_list})
 
+@login_required
 def viewEmpDetail(request, agent_code):
     employee = get_object_or_404(Employee, pk=agent_code)
     return render(request, 'employee_control/viewEmpDetail.html', {'employee': employee})
