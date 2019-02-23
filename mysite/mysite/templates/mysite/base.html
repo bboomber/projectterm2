@@ -41,8 +41,15 @@
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                <a href="/login/"><button class="btn btn-outline-light my-2 my-sm-0" type="button">log In</button></a>
+                {% if user.is_authenticated %}
+                <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#logoutmodal">
+                    LogOut
+                </button>
+
+                {% else %}
+                <a href="/login/"><button class="btn btn-outline-light my-2 my-sm-0 mr-1" type="button">log In</button></a>
                 <a href="/signup/"><button class="btn btn-outline-warning my-2 my-sm-0" type="button">sign up</button></a>
+                {% endif%}
             </form>
         </div>
     </nav>
@@ -68,5 +75,25 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
         crossorigin="anonymous"></script>
 </body>
+<div class="modal fade" id="logoutmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Log Out</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Please Confirm to log out!
+            </div>
+            <div class="modal-footer">
+                <a href="/logout/"><button class="btn btn-danger my-2 my-sm-0" type="button">Log Out</button></a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 </html>
