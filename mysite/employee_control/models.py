@@ -15,7 +15,8 @@ class Employee(models.Model):
     email = models.EmailField(max_length=30)
     address = models.CharField(max_length=200)
     remark = models.CharField(max_length=200)
-    
+    role = models.CharField(max_length=30, default='broker')
+
     def __str__(self):
         return self.agent_code + ' Detail'
 
