@@ -5,7 +5,6 @@ from .models import Insure
 
 class InsureForm(forms.Form):
     doc_nbr = forms.CharField(max_length=30, label="รหัสกรมธรรม์")
-    agent_code = forms.CharField(max_length=30, label="รหัสตัวแทน")
     package_id = forms.CharField(max_length=30, label="รหัสแพ็คเกจ")
     car_id = forms.CharField(max_length=30, label="รหัสรถยนต์")
     cus_id = forms.CharField(max_length=30, label="รหัสลูกค้า")
@@ -20,7 +19,6 @@ class InsureForm(forms.Form):
     class Meta:
         model = Insure
         fields = ('doc_nbr',
-        'agent_code',
         'package_id',
         'car_id',
         'cus_id',

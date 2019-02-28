@@ -21,8 +21,3 @@ class Insure(models.Model):
     def __str__(self):
         return self.doc_nbr + ' Detail'
 
-@receiver(post_save, sender=Insure)
-def update_Insure(sender, instance, created, **kwargs):
-    if created:
-        Insure.objects.Create(user=instance)
-    instance.insure.save()

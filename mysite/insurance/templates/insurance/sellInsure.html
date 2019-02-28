@@ -5,7 +5,8 @@
 
 
 <div class="container">
-    <form action="/" method="post">
+    {{ user.id }}
+    <form method="post">
         {% csrf_token %}
         {{ form|crispy }}
         <button type="submit" class="btn btn-primary">Primary</button>

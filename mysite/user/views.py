@@ -15,8 +15,6 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             user.refresh_from_db()
-            # user.employee.agent_code = form.cleaned_data.get('agent_code')
-            user.employee.agent_code = '0'
             user.employee.fname = form.cleaned_data.get('fname')
             user.employee.lname = form.cleaned_data.get('lname')
             user.employee.id_card = form.cleaned_data.get('id_card')
