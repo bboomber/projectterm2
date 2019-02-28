@@ -7,6 +7,7 @@ from . import views as mysite_views
 urlpatterns = [
     path('', mysite_views.showhome, name='showhome'),
     path('employee/', include('employee_control.urls')),
+    path('insure/', include('insurance.urls')),
     path('signup/', user_views.signup, name='signup'),
     path('profile/', user_views.profile, name='profile'),
     path('login/', auth_views.LoginView.as_view(template_name='user/login.html'), name='login'),

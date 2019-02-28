@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 class UserRegisterForm(UserCreationForm):
-    agent_code = forms.CharField(max_length=30)
+    # agent_code = forms.CharField(max_length=30)
     fname = forms.CharField(max_length=30)
     lname = forms.CharField(max_length=30)
     id_card = forms.CharField(max_length=13)
@@ -18,7 +18,7 @@ class UserRegisterForm(UserCreationForm):
         fields = ('username',
         'password1',
         'password2',
-        'agent_code',
+        # 'agent_code',
         'fname',
         'lname',
         'id_card',
@@ -27,3 +27,4 @@ class UserRegisterForm(UserCreationForm):
         'email',
         'address',
         )
+

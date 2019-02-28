@@ -9,12 +9,12 @@ from .forms import Nameform
 
 @login_required
 def viewAllEmp(request):
-    emp_list = Employee.objects.order_by('agent_code')
+    emp_list = Employee.objects.order_by('id')
     return render(request, 'employee_control/viewAllEmp.html', {'emp_list': emp_list})
 
 @login_required
-def viewEmpDetail(request, agent_code):
-    employee = get_object_or_404(Employee, pk=agent_code)
+def viewEmpDetail(request, id):
+    employee = get_object_or_404(Employee, id=id)
     return render(request, 'employee_control/viewEmpDetail.html', {'employee': employee})
 
 def get_name(request):

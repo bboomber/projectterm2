@@ -6,7 +6,7 @@ from django.dispatch import receiver
 # Create your models here.
 class Employee(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
-    agent_code = models.CharField(max_length=30)
+    # agent_code = models.CharField(max_length=30)
     fname = models.CharField(max_length=30)
     lname = models.CharField(max_length=30)
     id_card = models.CharField(max_length=13)
@@ -18,10 +18,16 @@ class Employee(models.Model):
     role = models.CharField(max_length=30, default='broker')
 
     def __str__(self):
-        return self.agent_code + ' Detail'
+        return 'ID: ' + str(self.id) + ' ,' + self.fname
+    
 
 @receiver(post_save, sender=User)
 def update_Employee(sender, instance, created, **kwargs):
     if created:
         Employee.objects.create(user=instance)
     instance.employee.save()
+
+
+
+
+
