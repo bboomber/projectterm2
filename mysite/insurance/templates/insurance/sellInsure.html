@@ -5,11 +5,11 @@
 
 
 <div class="container">
-    {{ user.id }}
+    AMA-{{ user.id }}
     <form method="post">
         {% csrf_token %}
         {{ form|crispy }}
-        <button type="submit" class="btn btn-primary">Primary</button>
+        <button type="submit" class="btn btn-primary">ออกกรมธรรม์</button>
     </form>
 </div>
 {% endblock %}
