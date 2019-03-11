@@ -24,11 +24,11 @@ def sellInsure(request):
 
             employee = Employee.objects.get(id=request.user.id)
 
-            i = Insure(doc_nbr=doc_nbr, agent_code=employee,
+            ins = Insure(doc_nbr=doc_nbr, agent_code=employee,
                        car_number=car_number, company_order=company_order,
                        price=price, total_price=total_price,
                        post_date=post_date)
-            i.save()
+            ins.save()
             return HttpResponseRedirect('/')
     else:
         form = InsureForm()
