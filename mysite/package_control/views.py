@@ -6,6 +6,7 @@ from .models import Package
 
 # Create your views here.
 
+
 @login_required
 def newPackage(request):
     if request.method == 'POST':
@@ -29,7 +30,12 @@ def newPackage(request):
         form = PackageForm()
     return render(request, 'package_control/newPackage.html', {'form': form})
 
+
 @login_required
 def showPackage(request):
     pack_list = Package.objects.order_by('id')
-    return render(request, 'package_control/showPackage.html', {'pack_list':pack_list})
+    return render(request, 'package_control/showPackage.html', {'pack_list': pack_list})
+
+
+def showPromotion(request):
+    return render(request, 'package_control/showPromotion.html')
