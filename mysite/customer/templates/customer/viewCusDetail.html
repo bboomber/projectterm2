@@ -6,12 +6,12 @@
     <div class="bg-white">
         <div class="container mt-5">
             <br />
-            <h1>Your Profile</h1>
+            <h1>ข้อมูลลูกค้า {{ cus.id }}</h1>
             <hr>
-            {{ user.username }}<br />
-            {{ employee.fname }}<br />
-            {{ employee.lname }}<br />
-            {{ employee.email }}<br />
+            ชื่อ :{{ cus.fname }}<br />
+            นามสกุล :{{ cus.lname }}<br />
+            อีเมลล์ :{{ cus.email }}<br />
+            ที่อยู่ :{{ cus.address }}<br />
 
             <hr>
             <button type="button" class="btn btn-warning">แก้ไขข้อมูล</button>

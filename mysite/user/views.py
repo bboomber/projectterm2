@@ -37,5 +37,6 @@ def signup(request):
 
 @login_required
 def profile(request):
-    return render(request, 'user/profile.html')
+    employee = Employee.objects.get(id=request.user.id)
+    return render(request, 'user/profile.html', {'employee': employee})
 

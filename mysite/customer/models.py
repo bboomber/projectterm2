@@ -13,6 +13,9 @@ class Customer(models.Model):
     phone = models.CharField(max_length=15)
     email = models.EmailField()
 
+    def __str__(self):
+        return 'ID: ' + str(self.id)
+
 class Car(models.Model):
     car_id = models.CharField(max_length=30)
     car_number = models.CharField(max_length=30)
@@ -23,3 +26,6 @@ class Car(models.Model):
     car_cc = models.IntegerField()
     car_type = models.CharField(max_length=30)
     sit = models.IntegerField()
+
+    def __str__(self):
+        return 'ID: ' + str(self.id)

@@ -6,12 +6,12 @@
     <div class="bg-white">
         <div class="container mt-5">
             <br />
-            <h1>Your Profile</h1>
+            <h1>ข้อมูลรถยนต์ {{ car.id }}</h1>
             <hr>
-            {{ user.username }}<br />
-            {{ employee.fname }}<br />
-            {{ employee.lname }}<br />
-            {{ employee.email }}<br />
+            ทะเบียน :{{ car.number }}<br />
+            province :{{ car.province }}<br />
+            model :{{ car.model }}<br />
+            sit :{{ car.sit }}<br />
 
             <hr>
             <button type="button" class="btn btn-warning">แก้ไขข้อมูล</button>

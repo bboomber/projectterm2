@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from .forms import InsureForm
@@ -6,6 +6,10 @@ from .models import Insure
 from django.contrib.auth import login as auth_login, authenticate, login
 from django.contrib.auth.models import User
 from employee_control.models import Employee
+
+def viewInsureDetail(request, id):
+    insure = get_object_or_404(Insure, id=id)
+    return render(request, 'insurance/viewInsureDetail.html', {'insure': insure})
 
 
 @login_required
@@ -25,14 +29,15 @@ def sellInsure(request):
             employee = Employee.objects.get(id=request.user.id)
 
             ins = Insure(doc_nbr=doc_nbr, agent_code=employee,
-                       car_number=car_number, company_order=company_order,
-                       price=price, total_price=total_price,
-                       post_date=post_date)
+                         car_number=car_number, company_order=company_order,
+                         price=price, total_price=total_price,
+                         post_date=post_date)
             ins.save()
             return HttpResponseRedirect('/')
     else:
         form = InsureForm()
     return render(request, 'insurance/sellInsure.html', {'form': form})
+
 
 @login_required
 def showAllInsure(request):

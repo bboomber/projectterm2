@@ -1,0 +1,14 @@
+{% extends 'mysite/base.html' %}
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+
+<div class="container">
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-primary">เพิ่มรถยนต์</button>
+    </form>
+</div>
+{% endblock %}

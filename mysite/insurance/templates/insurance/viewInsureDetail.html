@@ -6,12 +6,12 @@
     <div class="bg-white">
         <div class="container mt-5">
             <br />
-            <h1>Your Profile</h1>
+            <h1>ข้อมูลรถยนต์ {{ insure.id }}</h1>
             <hr>
-            {{ user.username }}<br />
-            {{ employee.fname }}<br />
-            {{ employee.lname }}<br />
-            {{ employee.email }}<br />
+            Doc Nbr :{{ insure.doc_nbr }}<br />
+            agent code :{{ insure.agent_code }}<br />
+            post date :{{ insure.post_date }}<br />
+            company_order :{{ insure.company_order }}<br />
 
             <hr>
             <button type="button" class="btn btn-warning">แก้ไขข้อมูล</button>
