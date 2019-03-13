@@ -33,3 +33,8 @@ def sellInsure(request):
     else:
         form = InsureForm()
     return render(request, 'insurance/sellInsure.html', {'form': form})
+
+@login_required
+def showAllInsure(request):
+    ins_list = Insure.objects.order_by('id')
+    return render(request, 'Insurance/showAllInsure.html', {'ins_list': ins_list})
