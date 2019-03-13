@@ -28,3 +28,8 @@ def newPackage(request):
     else:
         form = PackageForm()
     return render(request, 'package_control/newPackage.html', {'form': form})
+
+@login_required
+def showPackage(request):
+    pack_list = Package.objects.order_by('id')
+    return render(request, 'package_control/showPackage.html', {'pack_list':pack_list})
