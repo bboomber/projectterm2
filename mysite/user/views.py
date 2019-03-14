@@ -29,7 +29,7 @@ def signup(request):
             return redirect('/employee')
             # form.save()
             # username = form.cleaned_data.get('username')
-            # messages.success(request, f'Account created for {username}! You can login now')
+            messages.success(request, f'Account created for {username}! You can login now')
             # return redirect('/login')
     else:
         form = UserRegisterForm()
@@ -38,5 +38,6 @@ def signup(request):
 @login_required
 def profile(request):
     employee = Employee.objects.get(id=request.user.id)
+    messages.success(request, f'this is {employee.fname} profile!')
     return render(request, 'user/profile.html', {'employee': employee})
 

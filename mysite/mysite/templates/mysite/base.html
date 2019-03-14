@@ -7,7 +7,8 @@
     <title>Amarin Broker</title>
     <link rel="stylesheet" href="{% static 'employee_control/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'employee_control/css/emp_con.css' %}">
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 
 </head>
 
@@ -52,8 +53,8 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
                         customer
                     </a>
                     <div class="dropdown-menu bg-darkblue" aria-labelledby="navbarDropdown">
@@ -75,6 +76,25 @@
             </ul>
             <form class="form-inline my-2 my-lg-0">
                 {% if user.is_authenticated %}
+
+                <!-- <span class="fa-stack" style="vertical-align: top;">
+                    <i class="fa fa-circle fa-stack-2x text-white"></i>
+                    <i class="far fa-bell fa-stack-1x"></i>
+                </span> -->
+                <div id="ex3">
+                    <span class="p1 fa-stack fa-lg has-badge" data-count="3">
+                        <i class="p2 fa fa-circle fa-stack-1x fa-lg text-gray"></i>
+                        <i class="p3 fa fa-bell fa-stack-1x fa-sm"></i>
+                    </span>
+                </div>
+
+                <!-- <div id="ex4">
+                    <span class="p1 fa-stack fa-2x has-badge" data-count="4">
+                        <i class="fa fa-circle fa-stack-1x text-white"></i>
+                        <i class="p3 fa fa-bell fa-stack-1x fa-xs xfa-inverse" data-count="4b"></i>
+                    </span>
+                </div> -->
+
                 <a href="/profile/" class="btn btn-outline-light mr-1 ml-1" role="button">AMA-{{ user.id }}</a>
                 <button type="button" class="btn btn-outline-danger bg-dark mr-1 ml-1" data-toggle="modal"
                     data-target="#logoutmodal">
