@@ -8,6 +8,7 @@ from customer import views as customer_views
 urlpatterns = [
     path('', mysite_views.showhome, name='showhome'),
     path('Q&A/', mysite_views.showQandA, name='showQandA'),
+    path('contact/', mysite_views.showContact, name='showContact'),
 
     path('employee/', include('employee_control.urls')),
     path('package/', include('package_control.urls')),

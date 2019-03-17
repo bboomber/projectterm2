@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from .forms import PackageForm
-from .models import Package
+from .forms import PackageForm, PromotionForm
+from .models import Package, Promotion
 
 # Create your views here.
 
@@ -19,7 +19,6 @@ def newPackage(request):
             package_type = form.cleaned_data.get('package_type')
             price = form.cleaned_data.get('price')
             detail = form.cleaned_data.get('detail')
-
             pack = Package(package_id=package_id, package_name=package_name,
                            company_name=company_name, package_cc=package_cc,
                            package_type=package_type, price=price,
@@ -31,6 +30,22 @@ def newPackage(request):
     return render(request, 'package_control/newPackage.html', {'form': form})
 
 
+def addPromotion(request):
+    if request.method == 'POST':
+        form = PromotionForm(request.POST)
+        if form.is_valid():
+            promotion_name = form.cleaned_data.get('promotion_name')
+            promotion_detail = form.cleaned_data.get('promotion_detail')
+            end_date = form.cleaned_data.get('end_date')
+            pro = Promotion(promotion_name=promotion_name,
+                            promotion_detail=promotion_detail,
+                            end_date=end_date)
+
+            pro.save()
+    form = PromotionForm()
+    return render(request, 'package_control/addPromotion.html', {'form': form})
+
+
 @login_required
 def showPackage(request):
     pack_list = Package.objects.order_by('id')
@@ -38,4 +53,5 @@ def showPackage(request):
 
 
 def showPromotion(request):
-    return render(request, 'package_control/showPromotion.html')
+    pro_list = Promotion.objects.order_by('id')
+    return render(request, 'package_control/showPromotion.html', {'pro_list': pro_list})

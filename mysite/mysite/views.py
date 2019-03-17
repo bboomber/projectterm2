@@ -8,3 +8,6 @@ def showhome(request):
 
 def showQandA(request):
     return render(request, 'mysite/QandA.html')
+
+def showContact(request):
+    return render(request, 'mysite/contact.html')
