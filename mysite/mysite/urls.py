@@ -11,6 +11,8 @@ urlpatterns = [
     path('contact/', mysite_views.showContact, name='showContact'),
 
     path('employee/', include('employee_control.urls')),
+    path('remind/', include('employee_control.remind_urls')),
+
     path('package/', include('package_control.urls')),
     path('promotion/', include('package_control.promotion_urls')),
 
