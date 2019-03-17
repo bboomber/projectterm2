@@ -13,7 +13,11 @@ urlpatterns = [
     path('employee/', include('employee_control.urls')),
     path('package/', include('package_control.urls')),
     path('promotion/', include('package_control.promotion_urls')),
+
     path('insure/', include('insurance.urls')),
+    path('predict/', include('insurance.predict_urls')),
+    path('report/', include('insurance.report_urls')),
+
     path('signup/', user_views.signup, name='signup'),
     path('profile/', include('user.profile_urls')),
     path('login/', auth_views.LoginView.as_view(template_name='user/login.html'), name='login'),
@@ -22,6 +26,7 @@ urlpatterns = [
 
     path('customer/', include('customer.cus_urls')),
     path('car/', include('customer.car_urls')),
+    
     
     path('admin/', admin.site.urls),
 ]

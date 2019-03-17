@@ -7,6 +7,7 @@ from django.contrib.auth import login as auth_login, authenticate, login
 from django.contrib.auth.models import User
 from employee_control.models import Employee
 
+
 def viewInsureDetail(request, id):
     insure = get_object_or_404(Insure, id=id)
     return render(request, 'insurance/viewInsureDetail.html', {'insure': insure})
@@ -42,4 +43,12 @@ def sellInsure(request):
 @login_required
 def showAllInsure(request):
     ins_list = Insure.objects.order_by('id')
-    return render(request, 'Insurance/showAllInsure.html', {'ins_list': ins_list})
+    return render(request, 'insurance/showAllInsure.html', {'ins_list': ins_list})
+
+
+def showReport(request):
+    return render(request, 'insurance/showReport.html')
+
+
+def showPredict(request):
+    return render(request, 'insurance/showPredict.html')
