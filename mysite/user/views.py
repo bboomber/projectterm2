@@ -25,19 +25,42 @@ def signup(request):
             user.save()
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
-            # login(request, user)
+            messages.success(
+                request, f'Account created for {username}! You can login now')
             return redirect('/employee')
-            # form.save()
-            # username = form.cleaned_data.get('username')
-            messages.success(request, f'Account created for {username}! You can login now')
-            # return redirect('/login')
     else:
         form = UserRegisterForm()
     return render(request, 'user/signup.html', {'form': form})
+
+
+@login_required
+def editProfile(request):
+    # form = UserRegisterForm(request.POST or None, instance=instance)
+    # if form.is_valid():
+    #     form.save()
+    #     return redirect('/')
+    # return render(request, 'user/edtiProfile.html', {'form':form})
+
+    myProfile = Employee.objects.get(id=request.user.id)
+    if request.method=='POST':
+        myProfileform = UserRegisterForm(request.POST or None, instance=myProfile)
+        if myProfileform.is_valid():
+            print('ssssssssssssssssssssssssssssssssssssssssssss')
+            return redirect('/')
+        else:
+            myProfileform.cleaned_data.get('fname')
+            myProfile.fname = myProfileform.cleaned_data.get('fname')
+            myProfile.save()
+        # form = UserRegisterForm(request.POST, instance=myProfile)
+        # ทำไงวะ เอาให้รับค่าจากฟอร์มมาใส่ในอันเดิมอ่ะ อีเวง
+        return redirect('/')
+    else:
+        form = UserRegisterForm(instance=myProfile)
+    return render(request, 'user/editProfile.html', {'form': form})
+
 
 @login_required
 def profile(request):
     employee = Employee.objects.get(id=request.user.id)
     messages.success(request, f'this is {employee.fname} profile!')
     return render(request, 'user/profile.html', {'employee': employee})
-

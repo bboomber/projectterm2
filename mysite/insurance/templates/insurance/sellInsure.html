@@ -5,7 +5,6 @@
 
 
 <div class="container">
-    AMA-{{ user.id }}
     <form method="post">
         {% csrf_token %}
         {{ form|crispy }}

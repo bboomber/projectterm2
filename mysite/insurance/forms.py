@@ -22,18 +22,16 @@ class InsureForm(forms.Form):
     post_date = forms.DateField(widget=forms.DateInput(
         attrs={'type': 'date'}
     ), label="วันที่(ด/ว/ป)")
-    
 
-
-class Meta:
-    model = Insure
-    fields = ('doc_nbr',
-              'package_id',
-              'car_id',
-              'cus_id',
-              'car_number',
-              'company_order',
-              'price',
-              'total_price',
-              'post_date',
-              )
+    class Meta:
+        model = Insure
+        fields = ('doc_nbr',
+                  'package_id',
+                  'car_id',
+                  'cus_id',
+                  'car_number',
+                  'company_order',
+                  'price',
+                  'total_price',
+                  'post_date',
+                  )

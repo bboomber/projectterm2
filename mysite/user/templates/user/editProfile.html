@@ -1,0 +1,25 @@
+{% extends "mysite/base.html" %}
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<body class="bg-gray">
+    <div class="bg-white">
+        <div class="container mt-5">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.fname|as_crispy_field }}
+                {{ form.lname|as_crispy_field }}
+                {{ form.id_card|as_crispy_field }}
+                {{ form.phone1|as_crispy_field }}
+                {{ form.phone2|as_crispy_field }}
+                {{ form.email|as_crispy_field }}
+                {{ form.address|as_crispy_field }}
+                <button type="submit" class="btn btn-primary">confirm</button>
+            </form>
+
+
+        </div>
+    </div>
+</body>
+{% endblock %}
