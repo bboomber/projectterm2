@@ -35,24 +35,20 @@ def signup(request):
 
 @login_required
 def editProfile(request):
-    # form = UserRegisterForm(request.POST or None, instance=instance)
-    # if form.is_valid():
-    #     form.save()
-    #     return redirect('/')
-    # return render(request, 'user/edtiProfile.html', {'form':form})
-
     myProfile = Employee.objects.get(id=request.user.id)
-    if request.method=='POST':
-        myProfileform = UserRegisterForm(request.POST or None, instance=myProfile)
-        if myProfileform.is_valid():
-            print('ssssssssssssssssssssssssssssssssssssssssssss')
-            return redirect('/')
-        else:
+    if request.method == 'POST':
+        myProfileform = UserRegisterForm(
+            request.POST or None, instance=myProfile)
+        if not myProfileform.is_valid():
             myProfileform.cleaned_data.get('fname')
             myProfile.fname = myProfileform.cleaned_data.get('fname')
+            myProfile.lname = myProfileform.cleaned_data.get('lname')
+            myProfile.id_card = myProfileform.cleaned_data.get('id_card')
+            myProfile.phone1 = myProfileform.cleaned_data.get('phone1')
+            myProfile.phone2 = myProfileform.cleaned_data.get('phone2')
+            myProfile.email = myProfileform.cleaned_data.get('email')
+            myProfile.address = myProfileform.cleaned_data.get('address')
             myProfile.save()
-        # form = UserRegisterForm(request.POST, instance=myProfile)
-        # ทำไงวะ เอาให้รับค่าจากฟอร์มมาใส่ในอันเดิมอ่ะ อีเวง
         return redirect('/')
     else:
         form = UserRegisterForm(instance=myProfile)
