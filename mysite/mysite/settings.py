@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,4 @@ STATIC_URL = '/static/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL ='/login'
+IMOORT_EXPORT_USE_TRANSACTIONS = True
