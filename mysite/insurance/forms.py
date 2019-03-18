@@ -12,9 +12,14 @@ class InsureForm(forms.Form):
         pack_choice.append((pack.package_id, pack.package_name))
 
     doc_nbr = forms.CharField(max_length=30, label="รหัสกรมธรรม์")
-    package_id = forms.ChoiceField(choices=pack_choice, label="เลือกแพ็คเกจ")
+
+    # package_id = forms.ChoiceField(choices=pack_choice, label="เลือกแพ็คเกจ")
+    package_id = forms.ChoiceField(choices=pack_choice, label="เลือกแพ็คเกจ", widget=forms.Select(attrs={'class': 'selectpicker', 'data-live-search': 'true'}))
+    
     car_id = forms.CharField(max_length=30, label="รหัสรถยนต์")
+    
     cus_id = forms.CharField(max_length=30, label="รหัสลูกค้า")
+
     car_number = forms.CharField(max_length=30, label="ทะเบียนรถ")
     company_order = forms.CharField(max_length=30, label="บริษัทประกัน")
     price = forms.FloatField(label="ราคาสุทธิ")
