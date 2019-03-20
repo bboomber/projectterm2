@@ -31,4 +31,5 @@ def get_name(request):
 
 
 def remind(request):
+
     return render(request, 'employee_control/remind.html')
