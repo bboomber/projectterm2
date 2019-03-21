@@ -2,47 +2,99 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
+
 <div class="container mt-3">
     <div class="row">
         <div class="col-3">
             <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                 {% for month in all_month %}
-                    {% if month.month_num == 1 %}
-                        <a class="nav-link active" id="tabs-{{ month.month_num }}" data-toggle="pill" href="#month-{{ month.month_num }}" role="tab"
-                        aria-controls="month-{{ month.month_num }}" aria-selected="true">{{ month.month_name }}</a>
-                    {% else %}
-                        <a class="nav-link" id="tabs-{{ month.month_num }}" data-toggle="pill" href="#month-{{ month.month_num }}" role="tab"
-                        aria-controls="month-{{ month.month_num }}" aria-selected="true">{{ month.month_name }}</a>
-                    {% endif %}
+                {% if month.month_num == 1 %}
+                <a class="nav-link active rounded m-1 bg-darkblue text-white" id="tabs-{{ month.month_num }}" data-toggle="pill"
+                    href="#month-{{ month.month_num }}" role="tab" aria-controls="month-{{ month.month_num }}"
+                    aria-selected="true">{{ month.month_name }}</a>
+                {% else %}
+                <a class="nav-link rounded m-1 bg-darkblue text-white" id="tabs-{{ month.month_num }}" data-toggle="pill"
+                    href="#month-{{ month.month_num }}" role="tab" aria-controls="month-{{ month.month_num }}"
+                    aria-selected="true">{{ month.month_name }}</a>
+                {% endif %}
                 {% endfor %}
             </div>
         </div>
-        <div class="col-9">
+        <div class="col-9 rounded border border-secondary get-hover">
             <div class="tab-content" id="v-pills-tabContent">
                 {% for month in all_month %}
                 {% if month.month_num == 1 %}
-                    <div class="tab-pane fade show active" id="month-{{ month.month_num }}" role="tabpanel"
-                        aria-labelledby="month-{{ month.month_num }}">
-                        {{ month.month_name }}
-                        {% for ins in month.ins_list %}
-                            <h1>{{ ins.doc_nbr }}</h1>
+                <div class="tab-pane fade show active" id="month-{{ month.month_num }}" role="tabpanel"
+                    aria-labelledby="month-{{ month.month_num }}">
+                    <h1>{{ month.month_name }}</h1>
+                    <hr>
+                    <table class="table table-striped tableStyle bg-white">
+                        <thead>
+                            <tr>
+                                <th>Doc Number</th>
+                                <th>Car Id</th>
+                                <th>Date</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+                        <ul>
+                            {% for ins in month.ins_list %}
+                            <tr>
+                                <td><a href="/insure/{{ ins.id }}">{{ ins.doc_nbr }}</a></td>
+                                <td>{{ ins.car_id }}</td>
+                                <td>{{ ins.post_date }}</td>
+                                <td class="text-center"><a class='btn btn-info btn-xs' href="/insure/{{ ins.id }}"><span
+                                            class="glyphicon glyphicon-edit"></span>
+                                        View</a>
+                                    <a href="#" class="btn btn-danger btn-xs"><span
+                                            class="glyphicon glyphicon-remove"></span>
+                                        Del</a></td>
+                            </tr>
+                        </ul>
+                        <!-- <h1>{{ ins.doc_nbr }}</h1> -->
                         {% endfor %}
-                    </div>
+                    </table>
+                </div>
                 {% else %}
-                    <div class="tab-pane fade" id="month-{{ month.month_num }}" role="tabpanel" aria-labelledby="month-{{ month.month_num }}">
-                        {{ month.month_name }}
-                        {% for ins in month.ins_list %}
-                            <h1>{{ ins.doc_nbr }}</h1>
-                        {% endfor %}
-                    </div>
+                <div class="tab-pane fade" id="month-{{ month.month_num }}" role="tabpanel"
+                    aria-labelledby="month-{{ month.month_num }}">
+                    <h1>{{ month.month_name }}</h1>
+                    <hr>
+                    <table class="table table-striped tableStyle bg-white">
+                        <thead>
+                            <tr>
+                                <th>Agent Code</th>
+                                <th>Car Id</th>
+                                <th>Date</th>
+                                <th class="text-center">Action</th>
+                            </tr>
+                        </thead>
+
+                        <ul>
+                            {% for ins in month.ins_list %}
+                            <tr>
+                                <td><a href="/insure/{{ ins.id }}">{{ ins.doc_nbr }}</a></td>
+                                <td>{{ ins.car_id }}</td>
+                                <td>{{ ins.post_date }}</td>
+                                <td class="text-center"><a class='btn btn-info btn-xs' href="/insure/{{ ins.id }}"><span
+                                            class="glyphicon glyphicon-edit"></span>
+                                        View</a>
+                                    <a href="#" class="btn btn-danger btn-xs"><span
+                                            class="glyphicon glyphicon-remove"></span>
+                                        Del</a></td>
+                            </tr>
+                            <!-- <h1>{{ ins.doc_nbr }}</h1> -->
+                            {% endfor %}
+                        </ul>
+                    </table>
+                </div>
                 {% endif %}
                 {% endfor %}
-               
+
             </div>
         </div>
     </div>
 </div>
-
 
 
 

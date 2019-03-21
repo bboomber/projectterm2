@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Employee
 from .forms import Nameform
 from insurance.models import Insure
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -42,8 +43,7 @@ def remind(request):
         month.month_num = this_num
         month.month_name = month_list[i]
         all_month.append(month)
-        month.ins_list = Insure.objects.filter(post_date__month=this_num)
-        
+        month.ins_list = Insure.objects.filter(post_date__month=this_num, agent_code=request.user.id)
     return render(request, 'employee_control/remind.html', {'all_month': all_month})
 
 

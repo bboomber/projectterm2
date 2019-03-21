@@ -65,48 +65,6 @@
 .panel.with-nav-tabs .nav-justified{
 	margin-bottom: -1px;
 }
-/********************************************************************/
-/*** PANEL SUCCESS ***/
-.with-nav-tabs.panel-success .nav-tabs > li > a,
-.with-nav-tabs.panel-success .nav-tabs > li > a:hover,
-.with-nav-tabs.panel-success .nav-tabs > li > a:focus {
-	color: #3c763d;
-}
-.with-nav-tabs.panel-success .nav-tabs > .open > a,
-.with-nav-tabs.panel-success .nav-tabs > .open > a:hover,
-.with-nav-tabs.panel-success .nav-tabs > .open > a:focus,
-.with-nav-tabs.panel-success .nav-tabs > li > a:hover,
-.with-nav-tabs.panel-success .nav-tabs > li > a:focus {
-	color: #3c763d;
-	background-color: #d6e9c6;
-	border-color: transparent;
-}
-.with-nav-tabs.panel-success .nav-tabs > li.active > a,
-.with-nav-tabs.panel-success .nav-tabs > li.active > a:hover,
-.with-nav-tabs.panel-success .nav-tabs > li.active > a:focus {
-	color: #3c763d;
-	background-color: #fff;
-	border-color: #d6e9c6;
-	border-bottom-color: transparent;
-}
-.with-nav-tabs.panel-success .nav-tabs > li.dropdown .dropdown-menu {
-    background-color: #dff0d8;
-    border-color: #d6e9c6;
-}
-.with-nav-tabs.panel-success .nav-tabs > li.dropdown .dropdown-menu > li > a {
-    color: #3c763d;   
-}
-.with-nav-tabs.panel-success .nav-tabs > li.dropdown .dropdown-menu > li > a:hover,
-.with-nav-tabs.panel-success .nav-tabs > li.dropdown .dropdown-menu > li > a:focus {
-    background-color: #d6e9c6;
-}
-.with-nav-tabs.panel-success .nav-tabs > li.dropdown .dropdown-menu > .active > a,
-.with-nav-tabs.panel-success .nav-tabs > li.dropdown .dropdown-menu > .active > a:hover,
-.with-nav-tabs.panel-success .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
-    color: #fff;
-    background-color: #3c763d;
-}
-
 /* ----------------------------------- */
 .nav-tabs-dropdown {
     display: none;
@@ -137,3 +95,16 @@
           text-align: center;
       }
   }
+
+  .get-hover{
+    /* padding: 5px; */
+    margin: 1% 0;
+    box-shadow: 3px 3px 0px transparent;
+    transition: 0.5s;
+    }
+
+  .get-hover:hover{
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 2px #ccc;
+    transition: 0.5s;
+    }
