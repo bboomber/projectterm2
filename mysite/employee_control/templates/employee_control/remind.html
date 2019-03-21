@@ -2,46 +2,48 @@
 {% load crispy_forms_tags %}
 {% block content %}
 
-
-
-<div class="container">
-    <div>
-        <div class="panel with-nav-tabs panel-success">
-            <div class="panel-heading">
-                <ul class="nav nav-tabs">
-                    <li class="tab-head active"><a href="#tab1success" data-toggle="tab">ม.ค.</a></li>
-                    <li class="tab-head"><a href="#tab2success" data-toggle="tab">ก.พ.</a></li>
-                    <li class="tab-head"><a href="#tab3success" data-toggle="tab">มี.ค.</a></li>
-                    <li class="tab-head"><a href="#tab4success" data-toggle="tab">เม.ย.</a></li>
-                    <li class="tab-head"><a href="#tab5success" data-toggle="tab">พ.ค.</a></li>
-                    <li class="tab-head"><a href="#tab6success" data-toggle="tab">มิ.ย.</a></li>
-                    <li class="tab-head"><a href="#tab7success" data-toggle="tab">ก.ค.</a></li>
-                    <li class="tab-head"><a href="#tab8success" data-toggle="tab">ส.ค.</a></li>
-                    <li class="tab-head"><a href="#tab9success" data-toggle="tab">ก.ย.</a></li>
-                    <li class="tab-head"><a href="#tab10success" data-toggle="tab">ต.ค.</a></li>
-                    <li class="tab-head"><a href="#tab11success" data-toggle="tab">พ.ย.</a></li>
-                    <li class="tab-head"><a href="#tab12success" data-toggle="tab">ธ.ค.</a></li>
-
-                </ul>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-3">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                {% for month in all_month %}
+                    {% if month.month_num == 1 %}
+                        <a class="nav-link active" id="tabs-{{ month.month_num }}" data-toggle="pill" href="#month-{{ month.month_num }}" role="tab"
+                        aria-controls="month-{{ month.month_num }}" aria-selected="true">{{ month.month_name }}</a>
+                    {% else %}
+                        <a class="nav-link" id="tabs-{{ month.month_num }}" data-toggle="pill" href="#month-{{ month.month_num }}" role="tab"
+                        aria-controls="month-{{ month.month_num }}" aria-selected="true">{{ month.month_name }}</a>
+                    {% endif %}
+                {% endfor %}
             </div>
-            <div class="panel-body">
-                <div class="tab-content">
-                    <div class="tab-pane fade" id="tab1success">Success 1</div>
-                    <div class="tab-pane fade" id="tab2success">Success 2</div>
-                    <div class="tab-pane fade" id="tab3success">Success 3</div>
-                    <div class="tab-pane fade" id="tab4success">Success 4</div>
-                    <div class="tab-pane fade" id="tab5success">Success 5</div>
-                    <div class="tab-pane fade" id="tab6success">Success 1</div>
-                    <div class="tab-pane fade" id="tab7success">Success 2</div>
-                    <div class="tab-pane fade" id="tab8success">Success 3</div>
-                    <div class="tab-pane fade" id="tab9success">Success 4</div>
-                    <div class="tab-pane fade" id="tab10success">Success 5</div>
-                    <div class="tab-pane fade" id="tab11success">Success 1</div>
-                    <div class="tab-pane fade" id="tab12success">Success 2</div>
-                </div>
+        </div>
+        <div class="col-9">
+            <div class="tab-content" id="v-pills-tabContent">
+                {% for month in all_month %}
+                {% if month.month_num == 1 %}
+                    <div class="tab-pane fade show active" id="month-{{ month.month_num }}" role="tabpanel"
+                        aria-labelledby="month-{{ month.month_num }}">
+                        {{ month.month_name }}
+                        {% for ins in month.ins_list %}
+                            <h1>{{ ins.doc_nbr }}</h1>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="tab-pane fade" id="month-{{ month.month_num }}" role="tabpanel" aria-labelledby="month-{{ month.month_num }}">
+                        {{ month.month_name }}
+                        {% for ins in month.ins_list %}
+                            <h1>{{ ins.doc_nbr }}</h1>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% endfor %}
+               
             </div>
         </div>
     </div>
 </div>
+
+
+
 
 {% endblock %}

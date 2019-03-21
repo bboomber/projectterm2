@@ -108,3 +108,32 @@
 }
 
 /* ----------------------------------- */
+.nav-tabs-dropdown {
+    display: none;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  
+  .nav-tabs-dropdown:before {
+    content: "\e114";
+    font-family: 'Glyphicons Halflings';
+    position: absolute;
+    right: 30px;
+  }
+  
+  @media screen and (min-width: 769px) {
+    #nav-tabs-wrapper {
+      display: block!important;
+    }
+  }
+  @media screen and (max-width: 768px) {
+      .nav-tabs-dropdown {
+          display: block;
+      }
+      #nav-tabs-wrapper {
+          display: none;
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+          text-align: center;
+      }
+  }

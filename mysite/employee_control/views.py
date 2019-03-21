@@ -4,6 +4,7 @@ from django.template import loader
 from django.contrib.auth.decorators import login_required
 from .models import Employee
 from .forms import Nameform
+from insurance.models import Insure
 
 # Create your views here.
 
@@ -31,5 +32,24 @@ def get_name(request):
 
 
 def remind(request):
+    all_month = []
+    month_list = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม',
+                  'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม']
+    
+    for i in range(len(month_list)):
+        month = MyMonth()
+        this_num = i + 1
+        month.month_num = this_num
+        month.month_name = month_list[i]
+        all_month.append(month)
+        month.ins_list = Insure.objects.filter(post_date__month=this_num)
+        
+    return render(request, 'employee_control/remind.html', {'all_month': all_month})
 
-    return render(request, 'employee_control/remind.html')
+
+class MyMonth(object):
+    month_num = 1
+    month_name = ""
+    ins_list = []
+
+
