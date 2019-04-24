@@ -1,0 +1,4 @@
+﻿id ,fname ,lname ,id_card ,phone1 ,phone2 ,email ,address ,zipcode ,sub_district ,distinct ,province ,remark ,role ,user_id 
+,EMfname2,EMlname2,1.11E+12,852447561,\N,sabsakul@gmail.com,79 ถนนราชมนตรี ,10160,บางแคเหนือ,บางแค,กรุงเทพมหานคร,วงเงินเครดิตเริ่มต้น 100000 บาทมีเงินตั้งฝาก 1449 บาทขยายวงเงิน ชั่วคราวเพิ่ม 4117 บาท,broker,1
+,EMfname3,EMlname3,1.11E+12,852447562,\N,bb.wat2555@hotmail.com,26 พระเจ้าตากสิน34 ถนนพระเจ้าตากสิน ,10600,ดาวคะนอง,ธนบุรี,กรุงเทพมหานคร,,broker,1
+,EMfname4,EMlname4,1.11E+12,852447563,\N,,77 ม.3,,ดอนเตย,นาทม,นครพนม,,broker,1

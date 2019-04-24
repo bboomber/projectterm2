@@ -12,6 +12,7 @@ class Customer(models.Model):
     id_card = models.CharField(max_length=13)
     phone = models.CharField(max_length=15)
     email = models.EmailField()
+    cus_type = models.IntegerField(default=1)
 
     def __str__(self):
         return 'ID: ' + str(self.id)
