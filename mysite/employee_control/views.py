@@ -32,19 +32,23 @@ def get_name(request):
     return render(request, 'employee_control/name.html', {'form': form})
 
 
-def remind(request):
-    all_month = []
-    month_list = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม',
-                  'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม']
+# def remind(request):
+#     all_month = []
+#     month_list = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม',
+#                   'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม']
     
-    for i in range(len(month_list)):
-        month = MyMonth()
-        this_num = i + 1
-        month.month_num = this_num
-        month.month_name = month_list[i]
-        all_month.append(month)
-        month.ins_list = Insure.objects.filter(post_date__month=this_num, agent_code=request.user.id)
-    return render(request, 'employee_control/remind.html', {'all_month': all_month})
+#     for i in range(len(month_list)):
+#         month = MyMonth()
+#         this_num = i + 1
+#         month.month_num = this_num
+#         month.month_name = month_list[i]
+#         all_month.append(month)
+#         month.ins_list = Insure.objects.filter(post_date__month=this_num, agent_code=request.user.id)
+#     return render(request, 'employee_control/remind.html', {'all_month': all_month})
+
+def remind(request):
+    month_list = Insure.objects.filter(post_date__month=1, agent_code=request.user.id)
+    return render(request, 'employee_control/notice1.html', {'month_list': month_list})
 
 
 class MyMonth(object):

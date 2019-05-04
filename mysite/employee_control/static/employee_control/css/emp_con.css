@@ -1,110 +1,124 @@
-.tableStyle{
+.tableStyle {
     border: 1px solid #ccc;
     padding: 5px;
     margin: 5% 0;
     box-shadow: 3px 3px 2px #ccc;
     transition: 0.5s;
-    }
-.tableStyle:hover{
+}
+
+.tableStyle:hover {
     box-shadow: 3px 3px 0px transparent;
     transition: 0.5s;
-    }
+}
 
-.bg-gray{
+.bg-gray {
     background-color: rgb(226, 226, 226);
 }
 
-.bg-white{
+.bg-white {
     background-color: rgb(255, 255, 255);
 }
 
-.bg-dark{
+.bg-dark {
     background-color: rgb(0, 0, 0);
 }
 
-.bg-darkblue{
+.bg-darkblue {
     background-color: rgb(3, 39, 68);
 }
 
-.text-white{
+.text-white {
     color: white;
 }
 
-.text-red{
+.text-red {
     color: rgb(255, 0, 0);
 }
 
-.text-gray{
+.text-gray {
     color: rgb(226, 226, 226);
 }
-  
-#ex3 .fa-stack[data-count]:after{
-    position:absolute;
-    right:10%;
-    top:1%;
+
+#ex3 .fa-stack[data-count]:after {
+    position: absolute;
+    right: 10%;
+    top: 1%;
     content: attr(data-count);
-    font-size:43%;
-    padding:.6em;
-    border-radius:50%;
-    line-height:.8em;
+    font-size: 43%;
+    padding: .6em;
+    border-radius: 50%;
+    line-height: .8em;
     color: rgb(255, 255, 255);
-    background:rgb(141, 11, 61);
-    text-align:center;
+    background: rgb(141, 11, 61);
+    text-align: center;
     min-width: 1em;
-    font-weight:bold;
+    font-weight: bold;
 }
+
 
 /* --------------------------- */
 
-.panel.with-nav-tabs .panel-heading{
+.panel.with-nav-tabs .panel-heading {
     padding: 5px 5px 0 5px;
 }
-.panel.with-nav-tabs .nav-tabs{
-	border-bottom: none;
+
+.panel.with-nav-tabs .nav-tabs {
+    border-bottom: none;
 }
-.panel.with-nav-tabs .nav-justified{
-	margin-bottom: -1px;
+
+.panel.with-nav-tabs .nav-justified {
+    margin-bottom: -1px;
 }
+
+
 /* ----------------------------------- */
+
 .nav-tabs-dropdown {
     display: none;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-  }
-  
-  .nav-tabs-dropdown:before {
+}
+
+.nav-tabs-dropdown:before {
     content: "\e114";
     font-family: 'Glyphicons Halflings';
     position: absolute;
     right: 30px;
-  }
-  
-  @media screen and (min-width: 769px) {
-    #nav-tabs-wrapper {
-      display: block!important;
-    }
-  }
-  @media screen and (max-width: 768px) {
-      .nav-tabs-dropdown {
-          display: block;
-      }
-      #nav-tabs-wrapper {
-          display: none;
-          border-top-left-radius: 0;
-          border-top-right-radius: 0;
-          text-align: center;
-      }
-  }
+}
 
-  .get-hover{
+@media screen and (min-width: 769px) {
+    #nav-tabs-wrapper {
+        display: block!important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .nav-tabs-dropdown {
+        display: block;
+    }
+    #nav-tabs-wrapper {
+        display: none;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        text-align: center;
+    }
+}
+
+.get-hover {
     /* padding: 5px; */
     margin: 1% 0;
     box-shadow: 3px 3px 0px transparent;
     transition: 0.5s;
-    }
+}
 
-  .get-hover:hover{
+.get-hover:hover {
     border: 1px solid #ccc;
     box-shadow: 3px 3px 2px #ccc;
     transition: 0.5s;
-    }
+}
+
+.center {
+    margin: 0;
+    position: absolute;
+    left: 50%;
+}

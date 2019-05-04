@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-from .SENSITIVE_DATA import DB_HOST, DB_PASS, DB_USER
+from .SENSITIVE_DATA import DB_HOST, DB_PASS, DB_USER, DB_NAME
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'insurance',
+        'NAME': DB_NAME,
         'USER': DB_USER,
         'PASSWORD': DB_PASS,
         'HOST': DB_HOST,
@@ -133,3 +133,9 @@ STATIC_URL = '/static/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL ='/login'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = '58070035@it.kmitl.ac.th'
+EMAIL_HOST_PASSWORD = 'ayrssr8r'
+EMAIL_PORT = 587

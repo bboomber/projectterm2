@@ -1,103 +1,30 @@
-{% extends "mysite/base.html" %}
-{% load crispy_forms_tags %}
-{% block content %}
-
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
-
-<div class="container mt-3">
+{% extends "mysite/base.html" %} {% block content %} {% load crispy_forms_tags %}
+<div class="mt-5">
     <div class="row">
-        <div class="col-3">
-            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                {% for month in all_month %}
-                {% if month.month_num == 1 %}
-                <a class="nav-link active rounded m-1 bg-darkblue text-white" id="tabs-{{ month.month_num }}"
-                    data-toggle="pill" href="#month-{{ month.month_num }}" role="tab"
-                    aria-controls="month-{{ month.month_num }}" aria-selected="true">{{ month.month_name }}</a>
-                {% else %}
-                <a class="nav-link rounded m-1 bg-darkblue text-white" id="tabs-{{ month.month_num }}"
-                    data-toggle="pill" href="#month-{{ month.month_num }}" role="tab"
-                    aria-controls="month-{{ month.month_num }}" aria-selected="true">{{ month.month_name }}</a>
-                {% endif %}
-                {% endfor %}
+        <div class="col-2 mt-5">
+            <div class="btn-toolbar center" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group-vertical mr-2" role="group" aria-label="Second group">
+                    <a href="/notice" class="btn bg-darkblue text-white">มกราคม</a>
+                    <button type="button" class="btn bg-darkblue text-white">กุมภาพันธ์</button>
+                    <button type="button" class="btn bg-darkblue text-white">มีนาคม</button>
+                    <button type="button" class="btn bg-darkblue text-white">เมษายน</button>
+                    <button type="button" class="btn bg-darkblue text-white">พฤษภาคม</button>
+                    <button type="button" class="btn bg-darkblue text-white">มิถุนายน</button>
+                    <div class="dropdown-divider"></div>
+                    <button type="button" class="btn bg-darkblue text-white">กรกฎาคม</button>
+                    <button type="button" class="btn bg-darkblue text-white">สิงหาคม</button>
+                    <button type="button" class="btn bg-darkblue text-white">กันยายน</button>
+                    <button type="button" class="btn bg-darkblue text-white">ตุลาคม</button>
+                    <button type="button" class="btn bg-darkblue text-white">พฤศจิกายน</button>
+                    <button type="button" class="btn bg-darkblue text-white">7ธันวาคม</button>
+                </div>
             </div>
         </div>
-        <div class="col-9 rounded border border-secondary get-hover">
-            <div class="tab-content" id="v-pills-tabContent">
-                {% for month in all_month %}
-                {% if month.month_num == 1 %}
-                <div class="tab-pane fade show active" id="month-{{ month.month_num }}" role="tabpanel"
-                    aria-labelledby="month-{{ month.month_num }}">
-                    <h1>{{ month.month_name }}</h1>
-                    <hr>
-                    <table id="table{{ month.month_num }}" class="table table-striped table-bordered" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>Doc Number</th>
-                                <th>Car Id</th>
-                                <th>Date</th>
-                                <th class="text-center">Action</th>
-                            </tr>
-                        </thead>
-                        <ul>
-                            {% for ins in month.ins_list %}
-                            <tr>
-                                <td><a href="/insure/{{ ins.id }}">{{ ins.doc_nbr }}</a></td>
-                                <td>{{ ins.car_id }}</td>
-                                <td>{{ ins.post_date }}</td>
-                                <td class="text-center"><a class='btn btn-info btn-xs' href="/insure/{{ ins.id }}"><span
-                                            class="glyphicon glyphicon-edit"></span>
-                                        View</a>
-                                    <a href="#" class="btn btn-danger btn-xs"><span
-                                            class="glyphicon glyphicon-remove"></span>
-                                        Del</a></td>
-                            </tr>
-                        </ul>
-                        <!-- <h1>{{ ins.doc_nbr }}</h1> -->
-                        {% endfor %}
-                    </table>
-                </div>
-                {% else %}
-                <div class="tab-pane fade" id="month-{{ month.month_num }}" role="tabpanel"
-                    aria-labelledby="month-{{ month.month_num }}">
-                    <h1>{{ month.month_name }}</h1>
-                    <hr>
-                    <table id="table{{ month.month_num }}" class="table table-striped table-bordered" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>Agent Code</th>
-                                <th>Car Id</th>
-                                <th>Date</th>
-                                <th class="text-center">Action</th>
-                            </tr>
-                        </thead>
+        <div class="col mr-5">
 
-                        <ul>
-                            {% for ins in month.ins_list %}
-                            <tr>
-                                <td><a href="/insure/{{ ins.id }}">{{ ins.doc_nbr }}</a></td>
-                                <td>{{ ins.car_id }}</td>
-                                <td>{{ ins.post_date }}</td>
-                                <td class="text-center"><a class='btn btn-info btn-xs' href="/insure/{{ ins.id }}"><span
-                                            class="glyphicon glyphicon-edit"></span>
-                                        View</a>
-                                    <a href="#" class="btn btn-danger btn-xs"><span
-                                            class="glyphicon glyphicon-remove"></span>
-                                        Del</a></td>
-                            </tr>
-                            <!-- <h1>{{ ins.doc_nbr }}</h1> -->
-                            {% endfor %}
-                        </ul>
-                    </table>
-                </div>
-                {% endif %}
-                {% endfor %}
-
-            </div>
+            {% block notice %} {% endblock %}
         </div>
     </div>
 </div>
-
-
-
 
 {% endblock %}
