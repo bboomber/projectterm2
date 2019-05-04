@@ -5,21 +5,9 @@ from .models import Insure
 from package_control.models import Package
 from customer.models import Car, Customer
 
-pack_list = Package.objects.order_by('id')
-pack_choice = []
-for pack in pack_list:
-    pack_choice.append((pack.package_id, pack.package_name))
-
-car_list = Car.objects.order_by('id')
-car_choice = []
-for car in car_list:
-    car_choice.append((car.id, car.car_number))
-
-cus_list = Customer.objects.order_by('id')
-cus_choice = []
-for cus in cus_list:
-    cus_choice.append((cus.id, cus.fname))
-
+pack_choice = lambda: [(pack.package_id, pack.package_name) for pack in Package.objects.order_by('id')]
+car_choice = lambda: [(car.id, car.car_number) for car in Car.objects.order_by('id')]
+cus_choice = lambda: [(cus.id, cus.fname) for cus in Customer.objects.order_by('id')]
 
 class InsureForm(forms.Form):
     doc_nbr = forms.CharField(max_length=30, label="รหัสกรมธรรม์")
