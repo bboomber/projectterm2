@@ -1,8 +1,8 @@
 {% extends "mysite/base.html" %} {% block content %} {% load crispy_forms_tags %}
 
 <div class="container">
-    <div class="row">
-        <div class="col-2">
+    <div class="row mt-2">
+        <div class="col-2 mt-3">
             <div class="btn-group-vertical mr-2 mt-5" role="group" aria-label="Second group">
                 <a href="/remind" class="btn bg-darkblue text-white">มกรา Jan</a>
                 <a href="/remind/2" class="btn bg-darkblue text-white">กุมภา Feb</a>
@@ -16,10 +16,10 @@
                 <a href="/remind/9" class="btn bg-darkblue text-white">กันยา Sep</a>
                 <a href="/remind/10" class="btn bg-darkblue text-white">ตุลา Oct</a>
                 <a href="/remind/11" class="btn bg-darkblue text-white">พฤศจิกา Nov</a>
-                <a href="/remind/12" class="btn bg-darkblue text-white">7ธันวา Dec</a>
+                <a href="/remind/12" class="btn bg-darkblue text-white">ธันวา Dec</a>
             </div>
         </div>
-        <div class="col-sm">
+        <div class="col-sm mt-5">
             {% block notice %} {% endblock %}
         </div>
     </div>
