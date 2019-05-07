@@ -18,6 +18,6 @@ class Insure(models.Model):
     total_price = models.FloatField()
     post_date = models.DateField(null=True)
 
-    def __str__(self):
-        return self.doc_nbr + ' Detail'
+    # def __str__(self):
+    #     return self.doc_nbr + ' Detail'
 

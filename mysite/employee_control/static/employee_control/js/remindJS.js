@@ -1,5 +1,7 @@
-$(document).ready(function () {
-    $('#table').DataTable();
+$(document).ready(function() {
+    $('#table').DataTable({
+        "ordering": false
+    });
     $('#table1').DataTable();
     $('#table2').DataTable();
     $('#table3').DataTable();
