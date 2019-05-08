@@ -26,7 +26,7 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
             messages.success(
-                request, f'Account created for {username}! You can login now')
+                request, f'สมัครสมาชิกสำเร็จ')
             return redirect('/employee')
     else:
         form = UserRegisterForm()
@@ -49,6 +49,8 @@ def editProfile(request):
             myProfile.email = myProfileform.cleaned_data.get('email')
             myProfile.address = myProfileform.cleaned_data.get('address')
             myProfile.save()
+        messages.success(
+                request, f'แก้ไขข้อมูลสำเร็จ')
         return redirect('/')
     else:
         form = UserRegisterForm(instance=myProfile)
@@ -58,5 +60,5 @@ def editProfile(request):
 @login_required
 def profile(request):
     employee = Employee.objects.get(id=request.user.id)
-    messages.success(request, f'this is {employee.fname} profile!')
+    # messages.success(request, f'this is {employee.fname} profile!')
     return render(request, 'user/profile.html', {'employee': employee})

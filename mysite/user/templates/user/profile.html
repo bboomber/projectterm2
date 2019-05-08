@@ -1,5 +1,4 @@
-{% extends "mysite/base.html" %}
-{% block content %}
+{% extends "mysite/base.html" %} {% block content %}
 
 
 <body class="bg-gray">
@@ -7,14 +6,10 @@
         <div class="container mt-5">
             <br />
             <h1>Your Profile</h1>
-            <hr>
-            {{ user.username }}<br />
-            {{ employee.fname }}<br />
-            {{ employee.lname }}<br />
-            {{ employee.email }}<br />
+            <hr> {{ user.username }}<br /> {{ employee.fname }}<br /> {{ employee.lname }}<br /> {{ employee.email }}<br />
 
             <hr>
-            <a href="/profile/edit" class="btn btn-warning"> edti data</a>
+            <a href="/profile/edit" class="btn btn-warning"> แก้ไขข้อมูลส่วนตัว</a>
             <br />
             <br />
         </div>

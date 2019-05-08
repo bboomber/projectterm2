@@ -7,8 +7,7 @@
     <title>Amarin Broker</title>
     <link rel="stylesheet" href="{% static 'employee_control/css/bootstrap.min.css' %}">
     <link rel="stylesheet" href="{% static 'employee_control/css/emp_con.css' %}">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/css/bootstrap-select.min.css">
 
 
@@ -18,8 +17,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-darkblue">
         <a class="navbar-brand" href="/">Amarin</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -27,13 +25,12 @@
             <ul class="navbar-nav mr-auto">
                 {% if user.is_authenticated %}
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         กรมธรรม์
                     </a>
                     <div class="dropdown-menu bg-darkblue" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item text-white" href="/insure/">แสดงกรมธรรม์ทั้งหมด</a>
-                        <a class="dropdown-item text-white" href="/insure/sell">ออกกรมธรรม์</a>
+                        <a class="dropdown-item text-white" href="/insure/sell">ออกงานประกัน</a>
 
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item text-white" href="#">Something else here</a>
@@ -44,8 +41,7 @@
                     <a class="nav-link" href="/employee/">นายหน้า</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         แพ็คเกจ
                     </a>
                     <div class="dropdown-menu bg-darkblue" aria-labelledby="navbarDropdown">
@@ -57,8 +53,7 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         customer
                     </a>
                     <div class="dropdown-menu bg-darkblue" aria-labelledby="navbarDropdown">
@@ -79,8 +74,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/report/">รายงาน</a>
                 </li>
-                {% else %}
-                {% endif%}
+                {% else %} {% endif%}
                 <li class="nav-item">
                     <a class="nav-link" href="/Q&A/">คำถาม</a>
                 </li>
@@ -111,43 +105,25 @@
                     </span>
                 </div> -->
 
-                <a href="/profile/" class="btn btn-outline-light mr-1 ml-1" role="button">AMA-{{ user.id }}</a>
-                <button type="button" class="btn btn-outline-danger bg-dark mr-1 ml-1" data-toggle="modal"
-                    data-target="#logoutmodal">
+                <a href="/profile/" class="btn btn-outline-light mr-1 ml-1" role="button">User</a>
+                <button type="button" class="btn btn-outline-danger bg-dark mr-1 ml-1" data-toggle="modal" data-target="#logoutmodal">
                     LogOut
-                </button>
-
-                {% else %}
+                </button> {% else %}
                 <a href="/login/" class="btn btn-outline-light mr-1 ml-1" role="button">log In</a>
-                <a href="/signup/" class="btn btn-outline-warning mr-1 ml-1" role="button">Sign Up</a>
-                {% endif%}
+                <a href="/signup/" class="btn btn-outline-warning mr-1 ml-1" role="button">สมัครสมาชิก</a> {% endif%}
             </form>
         </div>
     </nav>
-    {% if messages %}
-    {% for message in messages %}
+    {% if messages %} {% for message in messages %}
     <div class="alert alert-{{ message.tags }}">
         {{ message }}
     </div>
-    {% endfor %}
-    {% endif %}
+    {% endfor %} {% endif %} {% block content %} {% endblock %}
 
 
-
-    {% block content %}
-
-    {% endblock %}
-
-    
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
-        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
-        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/js/bootstrap-select.min.js"></script>
 
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -155,8 +131,7 @@
     <script src="{% static 'employee_control/js/remindJS.js' %}"></script>
 
 </body>
-<div class="modal fade" id="logoutmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="logoutmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
