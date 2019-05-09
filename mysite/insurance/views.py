@@ -10,6 +10,7 @@ from customer.models import Car, Customer
 from package_control.models import Package
 
 
+
 def viewInsureDetail(request, id):
     insure = get_object_or_404(Insure, id=id)
     return render(request, 'insurance/viewInsureDetail.html', {'insure': insure})
@@ -64,3 +65,8 @@ def showReport(request):
 
 def showPredict(request):
     return render(request, 'insurance/showPredict.html')
+
+@login_required
+def showEmpInsure(request):
+    ins_list = Insure.objects.filter(agent_code = request.user.id)
+    return render(request, 'insurance/showEmpInsure.html', {'ins_list': ins_list})

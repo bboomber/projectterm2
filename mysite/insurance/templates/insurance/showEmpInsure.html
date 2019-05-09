@@ -1,0 +1,37 @@
+{% extends "mysite/base.html" %} {% block content %}
+<div class="container">
+    <div class="row col-md-12">
+        <table class="table table-striped tableStyle">
+            <thead>
+                <tr>
+                    <th>Doc Id</th>
+                    <th>Agent Code</th>
+                    <th>Package Id</th>
+                    <th class="text-center">Action</th>
+                </tr>
+            </thead>
+
+            {% if ins_list %}
+            <ul>
+                {% for insure in ins_list %}
+                <tr>
+                    <td><a href="/insure/{{ insure.id }}">{{ insure.doc_nbr }}</a></td>
+                    <td>{{ insure.agent_code }}</td>
+                    <td>{{ insure.package_id }}</td>
+                    <td class="text-center"><a class='btn btn-info btn-xs' href="/insure/{{ insure.id }}"><span
+                                class="glyphicon glyphicon-edit"></span>
+                            แก้ไข</a>
+                        <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>
+                            ยกเลิก</a></td>
+                </tr>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>No Insurance here.</p>
+            {% endif %}
+        </table>
+
+
+    </div>
+</div>
+{% endblock %}

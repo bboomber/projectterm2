@@ -1,5 +1,4 @@
-{% extends "mysite/base.html" %}
-{% block content %}
+{% extends "mysite/base.html" %} {% block content %}
 <div class="container">
     <div class="row col-md-12">
         <table class="table table-striped tableStyle">
@@ -21,9 +20,9 @@
                     <td>{{ insure.package_id }}</td>
                     <td class="text-center"><a class='btn btn-info btn-xs' href="/insure/{{ insure.id }}"><span
                                 class="glyphicon glyphicon-edit"></span>
-                            Edit</a>
+                            แก้ไข</a>
                         <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>
-                            Del</a></td>
+                            ยกเลิก</a></td>
                 </tr>
                 {% endfor %}
             </ul>

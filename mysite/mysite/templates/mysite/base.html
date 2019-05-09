@@ -26,17 +26,16 @@
                 {% if user.is_authenticated %}
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        กรมธรรม์
-                    </a>
+                                กรมธรรม์
+                            </a>
                     <div class="dropdown-menu bg-darkblue" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item text-white" href="/insure/">แสดงกรมธรรม์ทั้งหมด</a>
-                        <a class="dropdown-item text-white" href="/insure/sell">ออกงานประกัน</a>
-
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-white" href="#">Something else here</a>
+                        <a class="dropdown-item text-white" href="/insure/">กรมธรรม์ของตนเอง</a>
+                        <a class="dropdown-item text-white" href="/insure/emp">กรมธรรม์ทั้งหมด</a>
                     </div>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link" href="/insure/sell">ออกงานประกัน</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/employee/">นายหน้า</a>
                 </li>
@@ -71,8 +70,16 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/predict/">พยากรณ์</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/report/">รายงาน</a>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            รายงานผล
+                        </a>
+                    <div class="dropdown-menu bg-darkblue" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item text-white" href="/report/">ยอดขายทั้งหมด</a>
+                        <a class="dropdown-item text-white" href="/report">ยอดขายรายเดือน</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item text-white" href="/report">รายงานผลโดยรวม</a>
+                    </div>
                 </li>
                 {% else %} {% endif%}
                 <li class="nav-item">
