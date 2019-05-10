@@ -36,3 +36,17 @@ class InsureForm(forms.Form):
                   'total_price',
                   'post_date',
                   )
+
+class NewCusForm(forms.Form):
+    doc_nbr = forms.CharField(max_length=30, label="รหัสกรมธรรม์")
+    package_id = forms.ChoiceField(choices=pack_choice, label="เลือกแพ็คเกจ", widget=forms.Select(
+        attrs={'class': 'selectpicker', 'data-live-search': 'true'}))
+    company_order = forms.CharField(max_length=30, label="บริษัทประกัน")
+    price = forms.FloatField(label="ราคาสุทธิ")
+    total_price = forms.FloatField(label="ราคารวม")
+    post_date = forms.DateField(widget=forms.DateInput(
+        attrs={'type': 'date'}
+    ), label="วันที่(ด/ว/ป)")
+
+class TranferForm(forms.Form):
+    pic_balance = forms.ImageField()

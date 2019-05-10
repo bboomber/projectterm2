@@ -16,12 +16,13 @@ class Insure(models.Model):
     price = models.FloatField()
     total_price = models.FloatField()
     post_date = models.DateField(null=True)
+    confirm = models.IntegerField(default=1)
 
     def __str__(self):
         return self.doc_nbr + ' Detail'
 
 class Tranfer(models.Model):
-    cus_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    emp_id = models.ForeignKey(Employee, on_delete=models.CASCADE)
     Package_id = models.ForeignKey(Package, on_delete=models.CASCADE)
     balance = models.FloatField()
-    pic_balance = models.CharField(max_length=30)
+    pic_balance = models.ImageField()

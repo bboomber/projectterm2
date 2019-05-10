@@ -64,9 +64,29 @@ def showReport(request):
 
 
 def showPredict(request):
-    return render(request, 'insurance/showPredict.html')
+    count_list = count_ins_list_month() 
+    print(count_list) 
+    return render(request, 'insurance/showPredict.html') 
 
 @login_required
 def showEmpInsure(request):
     ins_list = Insure.objects.filter(agent_code = request.user.id)
     return render(request, 'insurance/showEmpInsure.html', {'ins_list': ins_list})
+
+def newCusSell(request):
+    if request.method=='POST':
+        pass
+    return render(request, "insurance/newCusSell.html")
+
+    
+def count_ins_list_month():
+    #  this is loop for all insurance seperate month in 2015, 2016 and return in list
+    count_list = []
+    i = 2015
+    while i <= 2016:
+        j = 1
+        while j <=12:
+            count_list.append(Insure.objects.filter(post_date__year=i, post_date__month=j).count())
+            j+=1
+        i+=1    
+    return count_list

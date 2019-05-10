@@ -1,8 +1,5 @@
 from django import forms
 
-class Nameform(forms.Form):
-    your_name = forms.CharField(label="Your name", max_length=100)
-
 class Empform(forms.Form):
     agent_code = forms.CharField(label="agent_code", max_length=30)
     fname = forms.CharField(label="fname", max_length=30)

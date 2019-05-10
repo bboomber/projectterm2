@@ -3,7 +3,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.contrib.auth.decorators import login_required
 from .models import Employee
-from .forms import Nameform
 from insurance.models import Insure
 from django.contrib.auth.models import User
 from operator import itemgetter

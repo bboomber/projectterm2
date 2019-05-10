@@ -27,22 +27,22 @@ class UserRegisterForm(UserCreationForm):
                   )
 
 
-# class EditProfileForm(UserCreationForm):
-#     fname = forms.CharField(max_length=30)
-#     lname = forms.CharField(max_length=30)
-#     id_card = forms.CharField(max_length=13)
-#     phone1 = forms.CharField(max_length=15)
-#     phone2 = forms.CharField(max_length=15)
-#     email = forms.EmailField()
-#     address = forms.CharField(max_length=200)
+class EditProfileForm(UserCreationForm):
+    fname = forms.CharField(max_length=30)
+    lname = forms.CharField(max_length=30)
+    id_card = forms.CharField(max_length=13)
+    phone1 = forms.CharField(max_length=15)
+    phone2 = forms.CharField(max_length=15)
+    email = forms.EmailField()
+    address = forms.CharField(max_length=200)
 
-#     class Meta:
-#         model = User
-#         fields = ('fname',
-#                   'lname',
-#                   'id_card',
-#                   'phone1',
-#                   'phone2',
-#                   'email',
-#                   'address',
-#                   )
+    class Meta:
+        model = User
+        fields = ('fname',
+                  'lname',
+                  'id_card',
+                  'phone1',
+                  'phone2',
+                  'email',
+                  'address',
+                  )
