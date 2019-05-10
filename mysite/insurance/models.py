@@ -25,4 +25,4 @@ class Tranfer(models.Model):
     emp_id = models.ForeignKey(Employee, on_delete=models.CASCADE)
     Package_id = models.ForeignKey(Package, on_delete=models.CASCADE)
     balance = models.FloatField()
-    pic_balance = models.ImageField()
+    pic_balance = models.ImageField(upload_to='pic_balance')

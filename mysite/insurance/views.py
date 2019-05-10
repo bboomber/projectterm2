@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from .forms import InsureForm
-from .models import Insure
+from .models import Insure, Tranfer
 from django.contrib.auth import login as auth_login, authenticate, login
 from django.contrib.auth.models import User
 from employee_control.models import Employee
@@ -74,9 +74,11 @@ def showEmpInsure(request):
     return render(request, 'insurance/showEmpInsure.html', {'ins_list': ins_list})
 
 def newCusSell(request):
+    pic = Tranfer.objects.get(id=1).pic_balance
+    # Profile.objects.get(id=1).photo.delete(save=True)
     if request.method=='POST':
-        pass
-    return render(request, "insurance/newCusSell.html")
+        Tranfer.objects.get(id=1).pic_balance.delete(save=True)
+    return render(request, "insurance/newCusSell.html", {'pic' : pic})
 
     
 def count_ins_list_month():
