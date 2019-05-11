@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from employee_control.models import Employee
 from customer.models import Car, Customer
 from package_control.models import Package
+from .models import Insure, Tranfer
 
 
 
@@ -74,11 +75,15 @@ def showEmpInsure(request):
     return render(request, 'insurance/showEmpInsure.html', {'ins_list': ins_list})
 
 def newCusSell(request):
-    pic = Tranfer.objects.get(id=1).pic_balance
-    # Profile.objects.get(id=1).photo.delete(save=True)
+    pic = []
     if request.method=='POST':
-        Tranfer.objects.get(id=1).pic_balance.delete(save=True)
-    return render(request, "insurance/newCusSell.html", {'pic' : pic})
+        #Tranfer.objects.get(id=1).pic_balance.delete(save=True)
+        pic = Tranfer.objects.get(id=1).pic_balance
+        
+    return render(request, "insurance/newCusSell.html", {'pic': pic})
+
+
+
 
     
 def count_ins_list_month():

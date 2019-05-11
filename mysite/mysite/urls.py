@@ -4,6 +4,8 @@ from django.urls import include, path
 from user import views as user_views
 from . import views as mysite_views
 from customer import views as customer_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', mysite_views.showhome, name='showhome'),
@@ -31,4 +33,4 @@ urlpatterns = [
     
     
     path('admin/', admin.site.urls),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
