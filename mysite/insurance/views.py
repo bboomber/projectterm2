@@ -1,14 +1,15 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from .forms import InsureForm
+from .forms import InsureForm, TranferForm
 from .models import Insure, Tranfer
 from django.contrib.auth import login as auth_login, authenticate, login
 from django.contrib.auth.models import User
 from employee_control.models import Employee
 from customer.models import Car, Customer
 from package_control.models import Package
-from .models import Insure, Tranfer
+
+
 
 
 
@@ -74,13 +75,25 @@ def showEmpInsure(request):
     ins_list = Insure.objects.filter(agent_code = request.user.id)
     return render(request, 'insurance/showEmpInsure.html', {'ins_list': ins_list})
 
+@login_required
 def newCusSell(request):
     pic = []
     if request.method=='POST':
-        #Tranfer.objects.get(id=1).pic_balance.delete(save=True)
         pic = Tranfer.objects.get(id=1).pic_balance
+        tranForm = TranferForm(request.POST, request.FILES)
+        if tranForm.is_valid():
+            t = Tranfer.objects.get(id=1)
+            t.pic_balance = tranForm.cleaned_data['pic_balance']
+            t.save()
+            print('save jaa')
+        else:
+            print('hi')
+        #Tranfer.objects.get(id=1).pic_balance.delete(save=True)
         
-    return render(request, "insurance/newCusSell.html", {'pic': pic})
+    else:
+        tranForm = TranferForm()
+        
+    return render(request, "insurance/newCusSell.html", {'pic': pic, 'tranForm': tranForm})
 
 
 
