@@ -1,35 +1,36 @@
 {% extends "mysite/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
-
-<h1>this is show Predict</h1>
+{% load static %}
 
 <div class="container">
-    <canvas id="myChart"></canvas>
+    <br><br>
+    <label for="year-select">Select Year: </label>
+    <select class="selectpicker" data-live-search="true" id="year-select" name="year-select">
+        <option>2016</option>
+        <option>2017</option>
+    </select>
+    <canvas id="predictChart"></canvas>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="{% static 'employee_control/js/predictGraphJS.js' %}"></script>
 <script>
     $(document).ready(function() {
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'line',
-
-        // The data for our dataset
-        data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-            datasets: [{
-                label: 'My First dataset',
-                borderColor: 'rgb(255, 99, 132)',
-                data: [0, 10, 5, 2, 20, 30, 45]
-            }]
-        },
-
-        // Configuration options go here
-        options: {}
+        $('selectpicker').selectpicker();
+        let year = $('#year-select').selectpicker('val')
+        showGraphWithInsure(year)
     });
-});
+
+    $('#year-select').on('changed.bs.select', function(e, clickedIndex, isSelected, previousValue) {
+        let year = $('#year-select').selectpicker('val')
+        showGraphWithInsure(year)
+    });
+
+    function showGraphWithInsure(year) {
+        let insure_list = {{ insure_list|safe }}
+        showGraph({{ months|safe }}, insure_list[year])
+    }
+
 </script>
 {% endblock %}
 

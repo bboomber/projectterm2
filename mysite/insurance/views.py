@@ -61,9 +61,17 @@ def showReport(request):
 
 
 def showPredict(request):
-    count_list = count_ins_list_month()
-    print(count_list)
-    return render(request, 'insurance/showPredict.html') 
+    insure_list = {}
+    months = ['January', 'February', 'March', 'April', 'May', \
+        'June', 'July', 'August', 'September', 'October', 'November', 'December']
+    for year in range(2016, 2018):
+        insure_count = []
+        for month in range(1, 13):
+            ins_monthly_count = Insure.objects.filter(post_date__year=year, post_date__month=month).count()
+            insure_count.append(ins_monthly_count)
+        insure_list[str(year)] = insure_count
+
+    return render(request, 'insurance/showPredict.html', {'months': months, 'insure_list': insure_list})
 
 @login_required
 def showEmpInsure(request):
@@ -89,15 +97,3 @@ def newCusSell(request):
         tranForm = TranferForm()
         
     return render(request, "insurance/newCusSell.html", {'pic': pic, 'tranForm': tranForm})
-
-def count_ins_list_month():
-    #  this is loop for all insurance seperate month in 2015, 2016 and return in list
-    count_list = []
-    i = 2015
-    while i <= 2016:
-        j = 1
-        while j <=12:
-            count_list.append(Insure.objects.filter(post_date__year=i, post_date__month=j).count())
-            j+=1
-        i+=1    
-    return count_list
