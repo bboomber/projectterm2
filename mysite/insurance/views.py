@@ -9,14 +9,9 @@ from employee_control.models import Employee
 from customer.models import Car, Customer
 from package_control.models import Package
 
-
-
-
-
 def viewInsureDetail(request, id):
     insure = get_object_or_404(Insure, id=id)
     return render(request, 'insurance/viewInsureDetail.html', {'insure': insure})
-
 
 @login_required
 def sellInsure(request):
@@ -66,8 +61,8 @@ def showReport(request):
 
 
 def showPredict(request):
-    count_list = count_ins_list_month() 
-    print(count_list) 
+    count_list = count_ins_list_month()
+    print(count_list)
     return render(request, 'insurance/showPredict.html') 
 
 @login_required
@@ -95,10 +90,6 @@ def newCusSell(request):
         
     return render(request, "insurance/newCusSell.html", {'pic': pic, 'tranForm': tranForm})
 
-
-
-
-    
 def count_ins_list_month():
     #  this is loop for all insurance seperate month in 2015, 2016 and return in list
     count_list = []
