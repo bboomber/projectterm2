@@ -10,6 +10,9 @@
         <option>2016</option>
         <option>2017</option>
     </select>
+    <br><br>
+
+    <h1 id="predict-title" align="center"></h1>
     <canvas id="predictChart"></canvas>
 </div>
 
@@ -27,6 +30,7 @@
     });
 
     function showGraphWithInsure(year) {
+        $('#predict-title').text("ผลพยากรณ์ยอดขายปี " + year);
         let insure_list = {{ insure_list|safe }}
         showGraph({{ months|safe }}, insure_list[year])
     }
