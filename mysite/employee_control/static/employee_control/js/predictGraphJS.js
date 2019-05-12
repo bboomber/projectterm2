@@ -9,6 +9,7 @@ function showGraph(months, insure_list) {
             labels: months,
             datasets: [{
                 label: 'ยอดขาย',
+                backgroundColor: 'rgb(255, 255, 255, 0)',
                 borderColor: 'rgb(255, 99, 132)',
                 data: insure_list
             }]
