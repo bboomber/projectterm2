@@ -4,16 +4,40 @@
     <form method="POST">
         <fieldset class="form=group mt-5">
             <legend class="border-bottom mb-4 text-center">สมัครสมาชิกใหม่</legend>
-            {% csrf_token %}
-            <!-- <div class="row">
+            {% csrf_token %} {{ form.username|as_crispy_field }}
+            <div class="row">
                 <div class="col-sm">
-                    hi
+                    {{ form.password1|as_crispy_field }}
                 </div>
+                <div class="col-sm">
+                    {{ form.password2|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-sm">
                     {{ form.fname|as_crispy_field }}
                 </div>
-            </div> -->
-            {{ form|crispy }}
+                <div class="col-sm">
+                    {{ form.lname|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    {{ form.id_card|as_crispy_field }}
+                </div>
+                <div class="col-sm">
+                    {{ form.email|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    {{ form.phone1|as_crispy_field }}
+                </div>
+                <div class="col-sm">
+                    {{ form.phone2|as_crispy_field }}
+                </div>
+            </div>
+            {{ form.address|as_crispy_field }}
         </fieldset>
         <div class="form-group">
             <button class="btn btn-info" type="submit">Submit</button>
