@@ -1,7 +1,51 @@
-{% extends "mysite/base.html" %}
-{% load crispy_forms_tags %}
-{% block content %}
+{% extends "mysite/base.html" %} {% load crispy_forms_tags %} {% block content %}
 
-<h1>this is Q and A</h1>
+<body class="bg-gray">
+    <div class="container bg-white mt-3 add-radius">
+        <br>
+        <h3>คำถามที่พบบ่อย</h3>
+        <hr>
+        <div class="accordion" id="accordionExample">
+            <div class="col card m-3 border-0">
+                <div class="" id="headingOne">
+                    <button class="btn" type="button" data-toggle="collapse" style="background-color: rgb(191, 221, 194);" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        มีขั้นตอนในการลงทะเบียนอย่างไร
+                    </button>
+                </div>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        ผู้ใช้งานกรอกรายละเอียดข้อมูลตามแบบฟอร์มที่กำหนดให้ เมื่อผู้ใช้ส่งข้อมูลเข้าระบบแล้ว <br> ระบบจะทำการส่ง Username และ Password ไปที่ E-mail ของผู้ใช้งานที่กรอกตามแบบฟอร์ม
+                    </div>
+                </div>
+            </div>
 
+            <div class="col card m-3 border-0">
+                <div class="bg" id="headingTwo">
+                    <button class="btn" type="button" data-toggle="collapse" style="background-color: rgb(191, 221, 194);" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwp">
+                        สามารถเปลี่ยนรหัสผ่านได้หรือไม่ ?
+                    </button>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body">
+                        เมื่อผู้ใช้งานได้รับ Username และ Password แล้ว ให้ผู้ใช้งานกดปุ่มเข้าสู่ระบบและเลือกเปลี่ยนรหัสผ่าน<br> และทำการกรอกรหัสผ่านเก่าและรหัสผ่านใหม่ จากนั้นให้ผู้ใช้งาน กดปุ่ม ยืนยัน
+                    </div>
+                </div>
+            </div>
+
+            <div class="col card m-3 border-0">
+                <div class="bg" id="headingThree">
+                    <button class="btn" type="button" data-toggle="collapse" style="background-color: rgb(191, 221, 194);" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                        สามารถเปลี่ยน Email ที่ใช้บริการ ได้หรือไม่ ?
+                    </button>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        ในกรณีที่ต้องการเปลี่ยน Email ที่ใช้เข้าสู่บริการ ให้ผู้ช้งานกดปุ่ม แก้ไขข้อมูลส่วนตัว และกรอก E-mail ใหม่ <br> จากนั้นให้ผู้ใช้งาน กดปุ่ม ยืนยัน
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+</body>
 {% endblock %}

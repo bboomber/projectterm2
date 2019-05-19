@@ -1,7 +1,7 @@
-{% extends "mysite/base.html" %}
-{% block content %}
+{% extends "mysite/base.html" %} {% block content %}
 <div class="container">
-    <div class="row col-md-12">
+    <div class="row col-md-12 mt-5">
+        <h4>นายหน้าทั้งหมด</h4>
         <table class="table table-striped tableStyle">
             <thead>
                 <tr>
@@ -11,7 +11,7 @@
                     <th class="text-center">Action</th>
                 </tr>
             </thead>
-            
+
             {% if emp_list %}
             <ul>
                 {% for employee in emp_list %}
@@ -20,8 +20,8 @@
                     <td>{{ employee.fname }}</td>
                     <td>{{ employee.lname }}</td>
                     <td class="text-center"><a class='btn btn-info btn-xs' href="/employee/{{ employee.id }}"><span class="glyphicon glyphicon-edit"></span>
-                            Edit</a> 
-                            <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>
+                            Edit</a>
+                        <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>
                             Del</a></td>
                 </tr>
                 {% endfor %}

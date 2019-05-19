@@ -1,7 +1,56 @@
-{% extends "mysite/base.html" %}
-{% load crispy_forms_tags %}
-{% block content %}
+{% extends "mysite/base.html" %} {% load crispy_forms_tags %} {% block content %} {% load static %}
 
-<h1>this is contact</h1>
+<body class="bg-darkblue">
+    <div class="bg-white">
+
+        .<br \><br \>
+        <div class="container pd">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="box-part text-center">
+                        <i class="fas fa-map-marker-alt fa-5x"></i>
+                        <div class="title">
+                            <h4>Address</h4>
+                        </div>
+                        <div class="text">
+                            <span>1/199 อาคารทรัพย์ศิริ หมู่ที่ 6 ถนนบางขุนเทียน <br \> แขวงบางบอน เขตบางบอน กรุงเทพมหานคร 10150</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <div class="box-part text-center">
+                        <i class="fas fa-phone fa-5x"></i>
+                        <div class="title">
+                            <h4>Phone Number</h4>
+                        </div>
+                        <div class="text">
+                            <span>0-2899-8281-2 <br \> 08-6445-2911 <br \> 08-6312-7499</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm">
+                    <div class="box-part text-center">
+                        <i class="fab fa-line fa-5x"></i>
+                        <div class="title">
+                            <h4>Line ID</h4>
+                        </div>
+                        <div class="text">
+                            <span>คุณ นุชวรา : nidnoi281 <br \> คุณ วาสนา : kaiamarin</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <br \><br \>.
+    </div>
+    <div class="jumbotron bg-gray text-center">
+        <img src="{% static 'employee_control/image/OICdicut.png' %}" width="10%" height="19%">
+        <img src="{% static 'employee_control/image/DBDdicut.png' %}" width="10%" height="10%" class="mt-3">
+    </div>
+
+
+</body>
 
 {% endblock %}

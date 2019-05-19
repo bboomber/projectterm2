@@ -5,8 +5,9 @@
     <div class="bg-white">
         <div class="container mt-5">
             <br />
-            <h1>Your Profile</h1>
-            <hr> {{ user.username }}<br /> {{ employee.fname }}<br /> {{ employee.lname }}<br /> {{ employee.email }}<br />
+            <h1>ข้อมูลผู้ใช้งาน</h1>
+            <hr>ชื่อ: {{ employee.fname }}<br /> นามสกุล: {{ employee.lname }}<br />อีเมลล์: {{ employee.email }}<br /> ตำแหน่ง: {{ employee.role }}
+            <br /> เบอร์โทรศัพท์: {{ employee.phone1 }}, {{ employee.phone2 }}
 
             <hr>
             <a href="/profile/edit" class="btn btn-warning"> แก้ไขข้อมูลส่วนตัว</a>
