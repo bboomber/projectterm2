@@ -25,6 +25,11 @@ class Employee(models.Model):
     def __str__(self):
         return 'ID: ' + str(self.id) + ' ,' + self.fname
     
+    class Meta:
+        permissions = [
+            ("is_admin", "Role is admin"),
+            ("is_manager", "Role is manager"),
+        ]
 
 @receiver(post_save, sender=User)
 def update_Employee(sender, instance, created, **kwargs):

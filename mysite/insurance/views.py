@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from employee_control.models import Employee
 from customer.models import Car, Customer
 from package_control.models import Package
+from django.contrib.auth.decorators import permission_required
 
 def viewInsureDetail(request, id):
     insure = get_object_or_404(Insure, id=id)
@@ -55,7 +56,7 @@ def showAllInsure(request):
     ins_list = Insure.objects.order_by('id')
     return render(request, 'insurance/showAllInsure.html', {'ins_list': ins_list})
 
-
+@permission_required('employee_control.is_manager', raise_exception=True)
 def showReport(request):
     return render(request, 'insurance/showReport.html')
 

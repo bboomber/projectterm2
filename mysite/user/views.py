@@ -59,6 +59,6 @@ def editProfile(request):
 
 @login_required
 def profile(request):
-    employee = Employee.objects.get(id=request.user.id)
+    employee = Employee.objects.get(user=request.user.id)
     # messages.success(request, f'this is {employee.fname} profile!')
     return render(request, 'user/profile.html', {'employee': employee})
