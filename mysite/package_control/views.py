@@ -40,7 +40,6 @@ def addPromotion(request):
             pro = Promotion(promotion_name=promotion_name,
                             promotion_detail=promotion_detail,
                             end_date=end_date)
-
             pro.save()
     form = PromotionForm()
     return render(request, 'package_control/addPromotion.html', {'form': form})
