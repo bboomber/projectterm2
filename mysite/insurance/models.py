@@ -16,7 +16,7 @@ class Insure(models.Model):
     price = models.FloatField()
     total_price = models.FloatField()
     post_date = models.DateField(null=True)
-    confirm = models.IntegerField(default=1)
+    confirm = models.IntegerField(default=2)
 
     def __str__(self):
         return self.doc_nbr + ' Detail'
