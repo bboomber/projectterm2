@@ -48,64 +48,75 @@ def get_name(request):
 
 def remind(request):
     # all_list = Insure.objects.filter(post_date__month=1, agent_code=request.user.id).order_by('-id')
-    month_list = list(Insure.objects.filter(post_date__month=1, agent_code=request.user.id))
-    # print(month_list)
+    emp_id = Employee.objects.get(user = request.user.id)
+    month_list = list(Insure.objects.filter(post_date__month=1, agent_code=emp_id))
     month_list = sorted(month_list, key=lambda i: i.post_date.day)
 
     return render(request, 'employee_control/notice/notice1.html', {'month_list': month_list})
 
 def remind2(request):
-    month_list = Insure.objects.filter(post_date__month=2, agent_code=request.user.id)
+    emp_id = Employee.objects.get(user = request.user.id)
+    month_list = Insure.objects.filter(post_date__month=2, agent_code=emp_id)
     month_list = sorted(month_list, key=lambda i: i.post_date.day)
     return render(request, 'employee_control/notice/notice2.html', {'month_list': month_list})
 
 def remind3(request):
-    month_list = Insure.objects.filter(post_date__month=3, agent_code=request.user.id)
+    emp_id = Employee.objects.get(user = request.user.id)
+    month_list = Insure.objects.filter(post_date__month=3, agent_code=emp_id)
     month_list = sorted(month_list, key=lambda i: i.post_date.day)
     return render(request, 'employee_control/notice/notice3.html', {'month_list': month_list})
 
 def remind4(request):
-    month_list = Insure.objects.filter(post_date__month=4, agent_code=request.user.id)
+    emp_id = Employee.objects.get(user = request.user.id)
+    month_list = Insure.objects.filter(post_date__month=4, agent_code=emp_id)
     month_list = sorted(month_list, key=lambda i: i.post_date.day)
     return render(request, 'employee_control/notice/notice4.html', {'month_list': month_list})
 
 def remind5(request):
-    month_list = Insure.objects.filter(post_date__month=5, agent_code=request.user.id)
+    emp_id = Employee.objects.get(user = request.user.id)
+    month_list = Insure.objects.filter(post_date__month=5, agent_code=emp_id)
     month_list = sorted(month_list, key=lambda i: i.post_date.day)
     return render(request, 'employee_control/notice/notice5.html', {'month_list': month_list})
 
 def remind6(request):
-    month_list = Insure.objects.filter(post_date__month=6, agent_code=request.user.id)
+    emp_id = Employee.objects.get(user = request.user.id)
+    month_list = Insure.objects.filter(post_date__month=6, agent_code=emp_id)
     month_list = sorted(month_list, key=lambda i: i.post_date.day)
     return render(request, 'employee_control/notice/notice6.html', {'month_list': month_list})
 
 def remind7(request):
-    month_list = Insure.objects.filter(post_date__month=7, agent_code=request.user.id)
+    emp_id = Employee.objects.get(user = request.user.id)
+    month_list = Insure.objects.filter(post_date__month=7, agent_code=emp_id)
     month_list = sorted(month_list, key=lambda i: i.post_date.day)
     return render(request, 'employee_control/notice/notice7.html', {'month_list': month_list})
 
 def remind8(request):
-    month_list = Insure.objects.filter(post_date__month=8, agent_code=request.user.id)
+    emp_id = Employee.objects.get(user = request.user.id)
+    month_list = Insure.objects.filter(post_date__month=8, agent_code=emp_id)
     month_list = sorted(month_list, key=lambda i: i.post_date.day)
     return render(request, 'employee_control/notice/notice8.html', {'month_list': month_list})
 
 def remind9(request):
-    month_list = Insure.objects.filter(post_date__month=9, agent_code=request.user.id)
+    emp_id = Employee.objects.get(user = request.user.id)
+    month_list = Insure.objects.filter(post_date__month=9, agent_code=emp_id)
     month_list = sorted(month_list, key=lambda i: i.post_date.day)
     return render(request, 'employee_control/notice/notice9.html', {'month_list': month_list})
 
 def remind10(request):
-    month_list = Insure.objects.filter(post_date__month=10, agent_code=request.user.id)
+    emp_id = Employee.objects.get(user = request.user.id)
+    month_list = Insure.objects.filter(post_date__month=10, agent_code=emp_id)
     month_list = sorted(month_list, key=lambda i: i.post_date.day)
     return render(request, 'employee_control/notice/notice10.html', {'month_list': month_list})
 
 def remind11(request):
-    month_list = Insure.objects.filter(post_date__month=11, agent_code=request.user.id)
+    emp_id = Employee.objects.get(user = request.user.id)
+    month_list = Insure.objects.filter(post_date__month=11, agent_code=emp_id)
     month_list = sorted(month_list, key=lambda i: i.post_date.day)
     return render(request, 'employee_control/notice/notice11.html', {'month_list': month_list})
 
 def remind12(request):
-    month_list = Insure.objects.filter(post_date__month=12, agent_code=request.user.id)
+    emp_id = Employee.objects.get(user = request.user.id)
+    month_list = Insure.objects.filter(post_date__month=12, agent_code=emp_id)
     month_list = sorted(month_list, key=lambda i: i.post_date.day)
     return render(request, 'employee_control/notice/notice12.html', {'month_list': month_list})
 

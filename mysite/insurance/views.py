@@ -78,7 +78,9 @@ def showPredict(request):
 
 @login_required
 def showEmpInsure(request):
-    ins_list = Insure.objects.filter(agent_code = request.user.id)
+    emp_id = Employee.objects.get(user = request.user.id)
+    print(emp_id)
+    ins_list = Insure.objects.filter(agent_code = emp_id)
     return render(request, 'insurance/showEmpInsure.html', {'ins_list': ins_list})
 
 @login_required
