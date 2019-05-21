@@ -53,7 +53,7 @@ def sellInsure(request):
 
 @login_required
 def showAllInsure(request):
-    ins_list = Insure.objects.order_by('id')
+    ins_list = Insure.objects.order_by('id')[:1000]
     return render(request, 'insurance/showAllInsure.html', {'ins_list': ins_list})
 
 @permission_required('employee_control.is_manager', raise_exception=True)
@@ -79,8 +79,7 @@ def showPredict(request):
 @login_required
 def showEmpInsure(request):
     emp_id = Employee.objects.get(user = request.user.id)
-    print(emp_id)
-    ins_list = Insure.objects.filter(agent_code = emp_id)
+    ins_list = Insure.objects.filter(agent_code = emp_id)[:800]
     return render(request, 'insurance/showEmpInsure.html', {'ins_list': ins_list})
 
 @login_required

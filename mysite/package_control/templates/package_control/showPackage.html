@@ -1,35 +1,54 @@
-{% extends "mysite/base.html" %}
-{% load crispy_forms_tags %}
-{% block content %}
+{% extends "mysite/base.html" %} {% load crispy_forms_tags %} {% block content %}
 
-
+<!-- 
 <div class="container mt-5">
-        <a href="/package/new" class="btn btn-info">เพิ่มแพ็คเกจใหม่</a>
+    {% for package in pack_list %}
 
-{% if pack_list %}
-{% for package in pack_list %}
-
-<div class="card mb-3 mt-3">
-    <h5 class="card-header">Package : {{ package.package_name }}</h5>
-    <div class="card-body">
-        <h5 class="card-title">รหัสแพ็คเกจ : {{ package.package_id }}</h5>
-        <p class="card-text">บริษัท: {{ package.company_name }} <br />
-            ซีซี: {{ package.package_cc }}<br />
-            ประเภทแพ็คเกจ: {{ package.package_type }}<br />
-            ราคา: {{ package.price }}<br />
-            รายละเอียด: {{ package.detail }}</p>
-        <a href="#" class="btn btn-primary">ออกกรมธรรม์</a>
+    <div class="card mb-3 mt-3">
+        <h5 class="card-header">Package : {{ package.package_name }}</h5>
+        <div class="card-body">
+            <h5 class="card-title">รหัสแพ็คเกจ : {{ package.package_id }}</h5>
+            <p class="card-text">บริษัท: {{ package.company_name }} <br /> ซีซี: {{ package.package_cc }}<br /> ประเภทแพ็คเกจ: {{ package.package_type }}<br /> ราคา: {{ package.price }}<br /> รายละเอียด: {{ package.detail }}</p>
+            <a href="#" class="btn btn-primary">ออกกรมธรรม์</a>
+        </div>
     </div>
+    {% endfor %}
+</div> -->
+
+
+<div class="container text-center mb-5">
+    <h1>แพ็คเกจทั้งหมด</h1>
+    <a href="/package/new" class="btn btn-info">เพิ่มแพ็คเกจใหม่</a>
 </div>
 
-
-{% endfor %}
-
-{% else %}
-No Package here.
-{% endif %}
-
+<div class="row mb-3">
+    <div class="col-1"></div> {% for package in pack_list %} {% if package.id|divisibleby:3 %}
+    <div class="col-sm">
+        <div class="card">
+            <h5 class="card-header">Package : {{ package.package_name }}</h5>
+            <div class="card-body">
+                <h5 class="card-title">รหัสแพ็คเกจ : {{ package.package_id }}</h5>
+                <p class="card-text">บริษัท: {{ package.company_name }} <br /> ซีซี: {{ package.package_cc }}<br /> ประเภทแพ็คเกจ: {{ package.package_type }}<br /> ราคา: {{ package.price }}<br /> รายละเอียด: {{ package.detail }}</p>
+                <a href="#" class="btn btn-primary">ออกกรมธรรม์</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-1"></div>
 </div>
-
-
+<div class="row mb-3">
+    <div class="col-1"></div>
+    {% else %}
+    <div class="col-sm">
+        <div class="card">
+            <h5 class="card-header">Package : {{ package.package_name }}</h5>
+            <div class="card-body">
+                <h5 class="card-title">รหัสแพ็คเกจ : {{ package.package_id }}</h5>
+                <p class="card-text">บริษัท: {{ package.company_name }} <br /> ซีซี: {{ package.package_cc }}<br /> ประเภทแพ็คเกจ: {{ package.package_type }}<br /> ราคา: {{ package.price }}<br /> รายละเอียด: {{ package.detail }}</p>
+                <a href="#" class="btn btn-primary">ออกกรมธรรม์</a>
+            </div>
+        </div>
+    </div>
+    {% endif %} {% endfor %}
+    <div class="col-1"></div>
+</div>
 {% endblock %}
