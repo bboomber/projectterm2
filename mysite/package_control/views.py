@@ -48,7 +48,7 @@ def addPromotion(request):
 
 @login_required
 def showPackage(request):
-    pack_list = Package.objects.order_by('id')
+    pack_list = Package.objects.filter(active=2)
     return render(request, 'package_control/showPackage.html', {'pack_list': pack_list})
 
 
