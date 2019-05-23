@@ -4,34 +4,82 @@
 {% load static %}
 
 <div class="container">
-    <br><br>
-    <label for="year-select">Select Year: </label>
-    <select class="selectpicker" data-live-search="true" id="year-select" name="year-select">
-        <option>2017</option>
-    </select>
-    <br><br>
+    <br>
+    <div class="col-sm-12">
+        <div class="form-group">
+            <div class="input-group date" id="start-date" data-target-input="nearest" style="justify-content: center">
+                <div class="col-3">
+                    <label for="start-date">Select start date:</label>
+                </div>
+                <div class="input-group col-5">
+                    <input type="text" class="form-control datetimepicker-input" data-target="#start-date"/>
+                    <div class="input-group-append" data-target="#start-date" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group date" id="end-date" data-target-input="nearest" style="justify-content: center">
+                <div class="col-3">
+                    <label for="end-date">Select end date:</label>
+                </div>
+                <div class="input-group col-5">
+                    <input type="text" class="form-control datetimepicker-input" data-target="#end-date"/>
+                    <div class="input-group-append" data-target="#end-date" data-toggle="datetimepicker">
+                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                    </div>
+                </div>        
+            </div> 
+            <br>
+            <div class="input-group" style="justify-content: center"><button onclick="btnDidTapped()" type="button" class="btn btn-primary">Change</button></div>
+        </div>
+    </div>
 
     <h1 id="predict-title" align="center"></h1>
     <canvas id="predictChart"></canvas>
+    <br><br>
 </div>
 
+<script src="{% static 'employee_control/js/moment.js' %}"></script>
+<script src="{% static 'employee_control/js/tempusdominus-bootstrap-4.min.js' %}"></script>
 <script src="{% static 'employee_control/js/predictGraphJS.js' %}"></script>
 <script>
+    $('#start-date').datetimepicker({
+        viewMode: 'years',
+        format: 'MM/YYYY'
+    });
+
+    $('#end-date').datetimepicker({
+        viewMode: 'years',
+        format: 'MM/YYYY'
+    });
+
     $(document).ready(function() {
-        $('selectpicker').selectpicker();
-        let year = $('#year-select').selectpicker('val')
-        showGraphWithInsure(year)
+        showGraphWithInsure()
     });
 
-    $('#year-select').on('changed.bs.select', function(e, clickedIndex, isSelected, previousValue) {
-        let year = $('#year-select').selectpicker('val')
-        showGraphWithInsure(year)
-    });
+    function btnDidTapped() {
+        let startDate = $('#start-date').data('date').split('/');
+        let startMonth = startDate[0];
+        let startYear = startDate[1];
 
-    function showGraphWithInsure(year) {
-        $('#predict-title').text("ผลพยากรณ์ยอดขายปี " + year);
+        let endDate = $('#end-date').data('date').split('/');
+        let endMonth = endDate[0];
+        let endYear = endDate[1];
+
         let insure_list = {{ insure_list|safe }}
-        showGraph({{ months|safe }}, insure_list[year])
+        let months = {{ months|safe }}
+        let new_month = months.slice(startMonth - 1, endMonth);
+        let new_insure = insure_list[2017].slice(startMonth - 1, endMonth);
+
+        showGraph(new_month, new_insure)
+    }
+
+    function showGraphWithInsure() {
+        $('#predict-title').text("ผลพยากรณ์ยอดขายปี " + 2017);
+        let insure_list = {{ insure_list|safe }}
+        showGraph({{ months|safe }}, insure_list[2017])
     }
 
 </script>
