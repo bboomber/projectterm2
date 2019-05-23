@@ -49,8 +49,7 @@ def editProfile(request):
             myProfile.email = myProfileform.cleaned_data.get('email')
             myProfile.address = myProfileform.cleaned_data.get('address')
             myProfile.save()
-        messages.success(
-                request, f'แก้ไขข้อมูลสำเร็จ')
+        messages.success(request, f'แก้ไขข้อมูลสำเร็จ')
         return redirect('/')
     else:
         form = UserRegisterForm(instance=myProfile)

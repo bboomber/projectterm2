@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.contrib.auth.decorators import login_required
 from .models import Employee
+from django.contrib import messages
 from insurance.models import Insure
 from django.contrib.auth.models import User, Permission
 from operator import itemgetter
@@ -124,7 +125,6 @@ class MyMonth(object):
 def editRole(request, id):
     this_profile = Employee.objects.get(user=id)
     this_user = User.objects.get(id=id)
-    print(this_user, this_profile.role)
     role = Roleform()
     if request.method == 'POST':
         role = Roleform(request.POST or None)
@@ -144,4 +144,6 @@ def editRole(request, id):
             elif emp_role == 'broker':
                 this_profile.role = 'broker'
             this_profile.save()
-    return render(request, 'employee_control/editRole.html', { 'role':role})
+            messages.success(request, f'แก้ไขบทบาทสำเร็จ')
+            return redirect('/')
+    return render(request, 'employee_control/editRole.html', {'emp_role': this_profile.role ,'role':role})

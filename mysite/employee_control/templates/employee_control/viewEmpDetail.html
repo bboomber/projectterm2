@@ -16,8 +16,7 @@
             <hr> {% if perms.employee_control.is_manager %}
             <button type="button" class="btn btn-warning">แก้ไขข้อมูล
             </button> {% endif %} {% if perms.employee_control.is_admin %} {% if employee.user %}
-            <a class='btn btn-info btn-xs' href="/role/{{ employee.user.id }}">แก้ไขบทบาท</a>
-            <button type="button" class="btn btn-info">แก้ไขบทบาท</button>{% endif %} {% endif %}
+            <a class='btn btn-info btn-xs' href="/role/{{ employee.user.id }}">แก้ไขบทบาท</a> {% endif %} {% endif %}
             <br />
             <br />
         </div>
