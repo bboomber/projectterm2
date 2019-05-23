@@ -103,7 +103,7 @@ def newCusSell(request):
     return render(request, "insurance/newCusSell.html", {'pic': pic, 'tranForm': tranForm})
 
 # Predict Sale by year
-@permission_required('employee_control.is_manager', raise_exception=True)
+# @permission_required('employee_control.is_manager', raise_exception=True)
 def predictSale(insure_list):
     alpha = 0.1341
     beta = 0.8575
