@@ -9,105 +9,101 @@ from django.contrib.auth.models import User, Permission
 from operator import itemgetter
 from .forms import Roleform
 from user.forms import UserRegisterForm
+from django.contrib.auth.decorators import permission_required
 
 # Create your views here.
 
 
-@login_required
+@permission_required('employee_control.is_manager', raise_exception=True)
 def viewAllEmp(request):
     emp_list = Employee.objects.order_by('id')
     return render(request, 'employee_control/viewAllEmp.html', {'emp_list': emp_list})
 
 
-@login_required
+@permission_required('employee_control.is_manager', raise_exception=True)
 def viewEmpDetail(request, id):
     employee = get_object_or_404(Employee, id=id)
     return render(request, 'employee_control/viewEmpDetail.html', {'employee': employee})
 
-
-
-# def remind(request):
-#     all_month = []
-#     month_list = ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม',
-#                   'มิถุนายน', 'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม']
-    
-#     for i in range(len(month_list)):
-#         month = MyMonth()
-#         this_num = i + 1
-#         month.month_num = this_num
-#         month.month_name = month_list[i]
-#         all_month.append(month)
-#         month.ins_list = Insure.objects.filter(post_date__month=this_num, agent_code=request.user.id)
-#     return render(request, 'employee_control/remind.html', {'all_month': all_month})
-
+@login_required
 def remind(request):
-    # all_list = Insure.objects.filter(post_date__month=1, agent_code=request.user.id).order_by('-id')
     emp_id = Employee.objects.get(user = request.user.id)
     month_list = list(Insure.objects.filter(post_date__month=1, agent_code=emp_id))
     month_list = sorted(month_list, key=lambda i: i.post_date.day)
 
     return render(request, 'employee_control/notice/notice1.html', {'month_list': month_list})
 
+@login_required
 def remind2(request):
     emp_id = Employee.objects.get(user = request.user.id)
     month_list = Insure.objects.filter(post_date__month=2, agent_code=emp_id)
     month_list = sorted(month_list, key=lambda i: i.post_date.day)
     return render(request, 'employee_control/notice/notice2.html', {'month_list': month_list})
 
+@login_required
 def remind3(request):
     emp_id = Employee.objects.get(user = request.user.id)
     month_list = Insure.objects.filter(post_date__month=3, agent_code=emp_id)
     month_list = sorted(month_list, key=lambda i: i.post_date.day)
     return render(request, 'employee_control/notice/notice3.html', {'month_list': month_list})
 
+@login_required
 def remind4(request):
     emp_id = Employee.objects.get(user = request.user.id)
     month_list = Insure.objects.filter(post_date__month=4, agent_code=emp_id)
     month_list = sorted(month_list, key=lambda i: i.post_date.day)
     return render(request, 'employee_control/notice/notice4.html', {'month_list': month_list})
 
+@login_required
 def remind5(request):
     emp_id = Employee.objects.get(user = request.user.id)
     month_list = Insure.objects.filter(post_date__month=5, agent_code=emp_id)
     month_list = sorted(month_list, key=lambda i: i.post_date.day)
     return render(request, 'employee_control/notice/notice5.html', {'month_list': month_list})
 
+@login_required
 def remind6(request):
     emp_id = Employee.objects.get(user = request.user.id)
     month_list = Insure.objects.filter(post_date__month=6, agent_code=emp_id)
     month_list = sorted(month_list, key=lambda i: i.post_date.day)
     return render(request, 'employee_control/notice/notice6.html', {'month_list': month_list})
 
+@login_required
 def remind7(request):
     emp_id = Employee.objects.get(user = request.user.id)
     month_list = Insure.objects.filter(post_date__month=7, agent_code=emp_id)
     month_list = sorted(month_list, key=lambda i: i.post_date.day)
     return render(request, 'employee_control/notice/notice7.html', {'month_list': month_list})
 
+@login_required
 def remind8(request):
     emp_id = Employee.objects.get(user = request.user.id)
     month_list = Insure.objects.filter(post_date__month=8, agent_code=emp_id)
     month_list = sorted(month_list, key=lambda i: i.post_date.day)
     return render(request, 'employee_control/notice/notice8.html', {'month_list': month_list})
 
+@login_required
 def remind9(request):
     emp_id = Employee.objects.get(user = request.user.id)
     month_list = Insure.objects.filter(post_date__month=9, agent_code=emp_id)
     month_list = sorted(month_list, key=lambda i: i.post_date.day)
     return render(request, 'employee_control/notice/notice9.html', {'month_list': month_list})
 
+@login_required
 def remind10(request):
     emp_id = Employee.objects.get(user = request.user.id)
     month_list = Insure.objects.filter(post_date__month=10, agent_code=emp_id)
     month_list = sorted(month_list, key=lambda i: i.post_date.day)
     return render(request, 'employee_control/notice/notice10.html', {'month_list': month_list})
 
+@login_required
 def remind11(request):
     emp_id = Employee.objects.get(user = request.user.id)
     month_list = Insure.objects.filter(post_date__month=11, agent_code=emp_id)
     month_list = sorted(month_list, key=lambda i: i.post_date.day)
     return render(request, 'employee_control/notice/notice11.html', {'month_list': month_list})
 
+@login_required
 def remind12(request):
     emp_id = Employee.objects.get(user = request.user.id)
     month_list = Insure.objects.filter(post_date__month=12, agent_code=emp_id)
@@ -122,6 +118,7 @@ class MyMonth(object):
 
 
 
+@permission_required('employee_control.is_admin', raise_exception=True)
 def editRole(request, id):
     this_profile = Employee.objects.get(user=id)
     this_user = User.objects.get(id=id)

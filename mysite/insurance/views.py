@@ -51,7 +51,7 @@ def sellInsure(request):
     return render(request, 'insurance/sellInsure.html', {'form': form})
 
 
-@login_required
+@permission_required('employee_control.is_manager', raise_exception=True)
 def showAllInsure(request):
     ins_list = Insure.objects.order_by('id')[:1000]
     return render(request, 'insurance/showAllInsure.html', {'ins_list': ins_list})
@@ -60,7 +60,7 @@ def showAllInsure(request):
 def showReport(request):
     return render(request, 'insurance/showReport.html')
 
-
+@permission_required('employee_control.is_manager', raise_exception=True)
 def showPredict(request):
     months = ['January', 'February', 'March', 'April', 'May', \
         'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -103,6 +103,7 @@ def newCusSell(request):
     return render(request, "insurance/newCusSell.html", {'pic': pic, 'tranForm': tranForm})
 
 # Predict Sale by year
+@permission_required('employee_control.is_manager', raise_exception=True)
 def predictSale(insure_list):
     alpha = 0.1341
     beta = 0.8575
