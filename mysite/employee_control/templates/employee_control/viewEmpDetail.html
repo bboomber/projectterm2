@@ -1,5 +1,4 @@
-{% extends "mysite/base.html" %}
-{% block content %}
+{% extends "mysite/base.html" %} {% block content %}
 
 
 <body class="bg-gray">
@@ -7,19 +6,21 @@
         <div class="container mt-5">
             <br />
             <h1>ข้อมูลพนักงาน {{ employee.user }}</h1>
-            <hr>
-            ชื่อ :{{ employee.fname }}<br />
-            นามสกุล :{{ employee.lname }}<br />
-            เลขบัตรประชาชน :{{ employee.id_card }}<br />
-            เบอร์โทรศัพท์ 1 :{{ employee.phone1 }}<br />
-            เบอร์โทรศัพท์ 2 :{{ employee.phone2 }}<br />
-            อีเมลล์ :{{ employee.email }}<br />
-            ที่อยู่ :{{ employee.address }}<br />
-            {{ employee.id }}
-            <hr>
-            <button type="button" class="btn btn-warning">แก้ไขข้อมูล</button>
+            <hr> ชื่อ :{{ employee.fname }}
+            <br /> นามสกุล :{{ employee.lname }}
+            <br /> เลขบัตรประชาชน :{{ employee.id_card }}
+            <br /> เบอร์โทรศัพท์ 1 :{{ employee.phone1 }}
+            <br /> เบอร์โทรศัพท์ 2 :{{ employee.phone2 }}
+            <br /> อีเมลล์ :{{ employee.email }}
+            <br /> ที่อยู่ :{{ employee.address }}
+            <hr> {% if perms.employee_control.is_manager %}
+            <button type="button" class="btn btn-warning">แก้ไขข้อมูล
+            </button> {% endif %} {% if perms.employee_control.is_admin %} {% if employee.user %}
+            <a class='btn btn-info btn-xs' href="/role/{{ employee.user.id }}">แก้ไขบทบาท</a>
+            <button type="button" class="btn btn-info">แก้ไขบทบาท</button>{% endif %} {% endif %}
             <br />
             <br />
         </div>
     </div>
-    {% endblock %}
+</body>
+{% endblock %}

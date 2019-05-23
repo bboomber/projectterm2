@@ -35,7 +35,7 @@ def signup(request):
 
 @login_required
 def editProfile(request):
-    myProfile = Employee.objects.get(id=request.user.id)
+    myProfile = Employee.objects.get(user=request.user.id)
     if request.method == 'POST':
         myProfileform = UserRegisterForm(
             request.POST or None, instance=myProfile)

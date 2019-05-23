@@ -9,3 +9,14 @@ class Empform(forms.Form):
     phone2 = forms.CharField(label="phone2", max_length=30)
     email = forms.CharField(label="email", max_length=30)
     address = forms.CharField(label="address", max_length=200)
+
+
+
+role_choice = (
+    ("manager", ("manager ฝ่ายดูแลนายหน้า")),
+    ("broker", ("broker นายหน้า")),
+    ("admin", ("admin ผู้ดูแลระบบ")),
+)
+
+class Roleform(forms.Form):
+    role = forms.ChoiceField(choices=role_choice, label="", widget=forms.RadioSelect())
