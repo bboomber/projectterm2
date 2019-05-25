@@ -15,7 +15,7 @@ class Customer(models.Model):
     cus_type = models.IntegerField(default=1)
 
     def __str__(self):
-        return 'ID: ' + str(self.id)
+        return str(self.id)
 
 class Car(models.Model):
     car_id = models.CharField(max_length=30)
@@ -29,4 +29,4 @@ class Car(models.Model):
     sit = models.IntegerField()
 
     def __str__(self):
-        return 'ID: ' + str(self.id)
+        return str(self.id)

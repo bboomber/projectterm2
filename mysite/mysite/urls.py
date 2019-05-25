@@ -12,6 +12,8 @@ urlpatterns = [
     path('Q&A/', mysite_views.showQandA, name='showQandA'),
     path('contact/', mysite_views.showContact, name='showContact'),
 
+    path('pdf/',include('insurance.pdf_urls')),
+
     path('employee/', include('employee_control.urls')),
     path('remind/', include('employee_control.remind_urls')),
     path('role/', include('employee_control.role_urls')),

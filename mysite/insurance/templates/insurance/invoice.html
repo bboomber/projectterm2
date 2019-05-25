@@ -1,0 +1,143 @@
+<html>
+
+<head>
+    {% load static %}
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Amarin Broker</title>
+
+    <link rel="stylesheet" href="{% static 'employee_control/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'employee_control/css/emp_con.css' %}">
+    <link rel="stylesheet" href="{% static 'employee_control/css/tempusdominus-bootstrap-4.min.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/css/bootstrap-select.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+    <title>{{ insure.doc_nbr }}</title>
+
+    <style>
+        @font-face {
+            font-family: 'MyFont';
+            src: url('{% static "insurance/pdf/font/THSarabunNew.ttf" %}');
+        }
+        
+        body {
+            font-family: 'MyFont';
+            font-size: 14 px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <table border="0" cellpadding="5" width="100%">
+            <tr>
+                <td align="center">
+                    <img src="{% static 'employee_control/image/amarin.png'%}" width="60">
+                </td>
+                <td colspan="4" align="center">
+                    <U><p1 style="font-size:30px;">บริษัท {{ insure.company_order }} จำกัด</p1>
+                    </U><br> 1/199 อาคารทรัพย์ศิริ หมู่ที่ 6 ถนนบางขุนเทียน แขวงบางบอน เขตบางบอน กรุงเทพมหานคร 10150
+                </td>
+            </tr>
+            <tr style="height: 50px;">
+                <td colspan="1">
+                    <p1 style="font-size:30px;"> Amarin Broker</p1>
+                </td>
+                <td colspan="3"></td>
+                <td colspan="1" align="center">เลขที่ใบอนุญาติ
+                    <br>ว0008/2540
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class='wrapper'>
+        <table border="1 px" cellpadding="6" width="100%">
+            <tr align="center">
+                <td colspan="6" align="center" style="font-size: 22px;">
+                    ตารางกรมธรรม์ประกันภัยรถยนต์(ขายผ่านทางอิเล็กทรอนิกส์ (Online))
+                    <br><span style="font-size: 17px;"> THE SCHEDULE (Sell through electronic channel (Online))</span>
+                </td>
+            </tr>
+            <tr style="border: 0;">
+                <td>กรมธรรม์ประกันภัยเลขที่: <br> Policy No. </td>
+                <td colspan="3" style="font-size:20px;">{{ insure.doc_nbr }}</td>
+                <td colspan="1"> อาณาเขตคุ้มครอง: ประเทศไทย<br>
+                </td>
+            </tr>
+            <tr>
+                <td style="border: 0;">ผู้เอาประกันภัย:<br> The Insured</td>
+                <td colspan="3" style="border: 0;">ชื่อ: {{ cus.fname }} {{ cus.lname }}
+                    <br>ที่อยู่: {{ cus.address }} {{ cus.province }} {{ cus.zipcode }}
+                </td>
+                <td style="border: 0;" colspan="1"> อาชีพ: -</td>
+            </tr>
+            <tr style="border: 0;">
+                <td align="center" colspan="6"><img src="https://github.com/bboomber/picture/blob/master/1.JPG?raw=true"></td>
+            </tr>
+            <tr>
+                <td colspan="6">ผู้รับผลประโยชน์ :</td>
+            </tr>
+            <tr style="border: 0;">
+                <td>ระยะเวลาประกันภัย:</td>
+                <td>เริ่มต้นวันที่ </td>
+                <td>{{ insure.post_date.day }}/{{ insure.post_date.month }}/{{ insure.post_date.year }} </td>
+                <td>สิ้นสุดวันที่</td>
+                <td>{{ insure.post_date.day }}/{{ insure.post_date.month }}/{{ enddate }}</td>
+                <td>เวลา: 16.30</td>
+            </tr>
+            <tr>
+                <td colspan="6">รายการรถยนต์ที่เอาประกันภัย :</td>
+            </tr>
+            <tr>
+                <td align="center">ลำดับที่</td>
+                <td align="center">ชื่อรถยนต์</td>
+                <td align="center">เลขทะเบียน</td>
+                <td align="center">เลขตัวถัง</td>
+                <td align="center">จำนวนที่นั่ง</td>
+                <td align="center">ขนาด</td>
+            </tr>
+            <tr>
+                <td align="center">1</td>
+                <td align="center">{{ car.brand }}</td>
+                <td align="center">{{ car.car_number }}</td>
+                <td align="center">{{ car.chasiss_number }}</td>
+                <td align="center">{{ car.car_sit }}</td>
+                <td align="center">{{ car.car_cc }}</td>
+            </tr>
+            <tr>
+                <td colspan="6">จำนวนเงินเอาประกันภัย : กรมธรรม์ประกันภัยนี้ให้การคุ้มครองเฉพาะข้อตกลงคุ้มครองที่มีจำนวนเงินเอาประกันภัยระบุใว้เท่านั้น</td>
+            </tr>
+            <tr>
+                <td colspan="2">ความรับผิดชอบต่อบุคคลภายนอก :</td>
+                <td colspan="2">รถยนต์เสียหาย สูญหาย ไฟใหม้ :</td>
+                <td colspan="2">ความคุ้มครองตามเอกสารแนบท้าย :</td>
+            </tr>
+            <tr>
+                <td colspan="2"> <img src="https://raw.githubusercontent.com/bboomber/picture/master/thirdparty.jpg"></td>
+                <td colspan="2"><img src="https://github.com/bboomber/picture/blob/master/owndamage.JPG?raw=true"></td>
+                <td colspan="2"><img src="https://github.com/bboomber/picture/blob/master/coverage.JPG?raw=true"></td>
+            </tr>
+            <tr>
+                <td colspan="3">เบี้ยประกันภัยตามความคุ้มครองหลัก : {{ insure.total_price }} บาท</td>
+                <td colspan="3">เบี้ยประกันภัยหลังหักส่วนลดกรณีระบุชื่อผู้ขับขที่ : - บาท</td>
+            </tr>
+            <tr>
+                <td style="border: 0;" colspan="1">การใช้รถยนต์ :</td>
+                <td style="border: 0;" colspan="5"> ใช้ส่วนบุคคล ไม่ใช้รับจ้างหรือให้เช่า</td>
+            </tr>
+        </table>
+
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.7/dist/js/bootstrap-select.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+        <script src="{% static 'employee_control/js/remindJS.js' %}"></script>
+
+</body>
+
+</html>

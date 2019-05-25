@@ -1,3 +1,5 @@
+# !usr/bin/env python
+# -*- coding: UTF-8 -*-
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
@@ -9,6 +11,46 @@ from employee_control.models import Employee
 from customer.models import Car, Customer
 from package_control.models import Package
 from django.contrib.auth.decorators import permission_required
+
+from django.views.generic import View
+from django.template.loader import get_template
+from .utils import render_to_pdf, link_callback
+
+from io import BytesIO
+from xhtml2pdf import pisa
+from django.template import Context
+
+class GeneratePDF(View):
+    def get(self, request, *args, **kwargs):
+        # response = render(request, 'insurance/invoice.html')
+        template_path = 'insurance/invoice.html'
+        context = {'hi': 'hello, world'}
+        # Create a Django response object, and specify content_type as pdf
+        response = HttpResponse(content_type='application/pdf')
+        # find the template and render it.
+        template = get_template(template_path)
+        html = template.render(context)
+        # create a pdf
+        pisaStatus = pisa.CreatePDF(html, dest=response, encoding='utf-8', link_callback=link_callback)
+        # if error then show some funy view
+        if pisaStatus.err:
+            return HttpResponse('We had some errors <pre>' + html + '</pre>')
+        return response
+        
+def turnToPDF(request, id):
+    insure = Insure.objects.get(id=id)
+
+    template_path = 'insurance/invoice.html'
+    response = HttpResponse(content_type='application/pdf')
+    template = get_template(template_path)
+    html = template.render({'insure': insure,
+        'car': insure.car_id,
+        'cus': insure.cus_id,
+        'pack': insure.package_id,
+        'enddate': (insure.post_date.year)+1
+        })
+    pisaStatus = pisa.CreatePDF(html, dest=response, encoding='utf-8', link_callback=link_callback)
+    return response
 
 def viewInsureDetail(request, id):
     insure = get_object_or_404(Insure, id=id)
@@ -101,6 +143,7 @@ def newCusSell(request):
         tranForm = TranferForm()
         
     return render(request, "insurance/newCusSell.html", {'pic': pic, 'tranForm': tranForm})
+
 
 # Predict Sale by year
 def predictSale(insure_list):
