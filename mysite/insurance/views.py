@@ -1,15 +1,19 @@
 # !usr/bin/env python
 # -*- coding: UTF-8 -*-
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from .forms import InsureForm, TranferForm, InsureEditForm
+from employee_control.forms import Empform
+from package_control.forms import PackageForm, PackSellForm
+from customer.forms import CarForm, CustomerForm
 from .models import Insure, Tranfer
 from django.contrib.auth import login as auth_login, authenticate, login
 from django.contrib.auth.models import User
 from employee_control.models import Employee
 from customer.models import Car, Customer
 from package_control.models import Package
+from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
 
 
@@ -54,10 +58,12 @@ def turnToPDF(request, id):
     pisaStatus = pisa.CreatePDF(html, dest=response, encoding='utf-8', link_callback=link_callback)
     return response
 
+@login_required
 def viewInsureDetail(request, id):
     insure = get_object_or_404(Insure, id=1)
     return render(request, 'insurance/viewInsureDetail.html', {'insure': insure})
 
+@login_required
 def editInsure(request, id):
     myInsure = Insure.objects.get(id=id)
     doc_nbr = myInsure.doc_nbr
@@ -168,11 +174,35 @@ def newCusSell(request):
         else:
             print('hi')
         #Tranfer.objects.get(id=1).pic_balance.delete(save=True)
-        
     else:
         tranForm = TranferForm()
         
     return render(request, "insurance/newCusSell.html", {'pic': pic, 'tranForm': tranForm})
+
+def newSelling(request):
+    pic = []
+    if request.method=='POST':
+        packForm = PackSellForm(request.POST)
+        cusForm = CustomerForm(request.POST)
+        carForm = CarForm(request.POST)
+        tranFrom = TranferForm(request.POST, request.FILES)
+        messages.success(request, f'ออกกรมธรรม์สำเร็จ')
+        return redirect('/')
+    else:
+        packForm = PackSellForm()
+        cusForm = CustomerForm()
+        carForm = CarForm()
+        tranFrom = TranferForm()
+    
+    context = {
+        'packForm': packForm,
+        'cusForm': cusForm,
+        'carForm': carForm,
+        'tranFrom': tranFrom,
+    }
+    return render(request, "insurance/newSelling.html", context)
+
+
 
 
 # Predict Sale by year

@@ -9,6 +9,26 @@ pack_choice = lambda: [(pack.package_id, pack.package_name) for pack in Package.
 car_choice = lambda: [(car.id, car.car_number) for car in Car.objects.order_by('id')]
 cus_choice = lambda: [(cus.id, cus.fname) for cus in Customer.objects.order_by('id')]
 
+com_choice = (
+    ("A ประกันภัย", ("A ประกันภัย")),
+    ("B ประกันภัย", ("B ประกันภัย")),
+    ("C ประกันภัย", ("C ประกันภัย")),
+    ("D ประกันภัย", ("D ประกันภัย")),
+    ("E ประกันภัย", ("E ประกันภัย")),
+    ("F ประกันภัย", ("F ประกันภัย")),
+    ("G ประกันภัย", ("G ประกันภัย")),
+    ("H ประกันภัย", ("H ประกันภัย")),
+    ("I ประกันภัย", ("I ประกันภัย")),
+    ("J ประกันภัย", ("J ประกันภัย")),
+    ("K ประกันภัย", ("K ประกันภัย")),
+    ("L ประกันภัย", ("L ประกันภัย")),
+    ("M ประกันภัย", ("M ประกันภัย")),
+    ("N ประกันภัย", ("N ประกันภัย")),
+    ("O ประกันภัย", ("O ประกันภัย")),
+    ("P ประกันภัย", ("P ประกันภัย")),
+    ("Q ประกันภัย", ("Q ประกันภัย")),
+)
+
 class InsureForm(forms.Form):
     doc_nbr = forms.CharField(max_length=30, label="รหัสกรมธรรม์")
     package_id = forms.ChoiceField(choices=pack_choice, label="เลือกแพ็คเกจ", widget=forms.Select(
@@ -41,7 +61,8 @@ class InsureEditForm(InsureForm):
     package_id = forms.CharField()
     cus_id = forms.CharField()
     car_id = forms.CharField()
-    company_order = forms.CharField(max_length=30, label="บริษัทประกัน")
+    company_order = forms.ChoiceField(choices=com_choice, label="บริษัท", widget=forms.Select(
+        attrs={'class': 'selectpicker' , 'data-live-search': 'true'}))
     price = forms.FloatField(label="ราคาสุทธิ")
     total_price = forms.FloatField(label="ราคารวม")
     post_date = forms.DateField(widget=forms.DateInput(

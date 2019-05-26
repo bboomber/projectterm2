@@ -23,11 +23,6 @@ class Insure(models.Model):
     def __str__(self):
         return str(self.id)
 
-@receiver(post_save, sender=Insure)
-def update_Insure(sender, instance, updated, **kwargs):
-    if updated:
-        Insure.objects.create(Insure=instane)
-    instance.insure.save()
 
 class Tranfer(models.Model):
     emp_id = models.ForeignKey(Employee, on_delete=models.CASCADE)
