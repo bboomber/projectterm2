@@ -32,11 +32,10 @@
                     <div class="dropdown-menu bg-darkblue hover-color" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item text-white bg-darkblue hover-color" href="/insure/emp">กรมธรรม์ของคุณ</a> {% if perms.employee_control.is_manager %}
                         <a class="dropdown-item text-white bg-darkblue" href="/insure/">กรมธรรม์ทั้งหมด</a> {% endif %}
-                        <a class="dropdown-item text-white bg-darkblue" href="/insure/selling">การขายแบบใหม่</a>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/insure/sell">ออกงานประกัน</a>
+                    <a class="nav-link" href="/insure/selling">ออกงานประกัน</a>
                 </li>
                 {% if perms.employee_control.is_manager %}
                 <li class="nav-item">
