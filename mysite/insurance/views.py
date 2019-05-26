@@ -3,9 +3,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from .forms import InsureForm, TranferForm, InsureEditForm
+from .forms import InsureForm, TranferForm, InsureEditForm, SellingForm
 from employee_control.forms import Empform
-from package_control.forms import PackageForm, PackSellForm
+from package_control.forms import PackageForm
 from customer.forms import CarForm, CustomerForm
 from .models import Insure, Tranfer
 from django.contrib.auth import login as auth_login, authenticate, login
@@ -15,6 +15,8 @@ from customer.models import Car, Customer
 from package_control.models import Package
 from django.contrib import messages
 from django.contrib.auth.decorators import permission_required
+import uuid
+from datetime import date
 
 
 
@@ -113,7 +115,7 @@ def sellInsure(request):
             total_price = form.cleaned_data.get('total_price')
             post_date = form.cleaned_data.get('post_date')
             # ------------------------------------------
-            employee = Employee.objects.get(id=request.user.id)
+            employee = Employee.objects.get(user=request.user.id)
             # ------------------------------------------
             ins = Insure(doc_nbr=doc_nbr, agent_code=employee,
                          package_id=package,
@@ -180,27 +182,63 @@ def newCusSell(request):
     return render(request, "insurance/newCusSell.html", {'pic': pic, 'tranForm': tranForm})
 
 def newSelling(request):
-    pic = []
-    if request.method=='POST':
-        packForm = PackSellForm(request.POST)
-        cusForm = CustomerForm(request.POST)
-        carForm = CarForm(request.POST)
-        tranFrom = TranferForm(request.POST, request.FILES)
-        messages.success(request, f'ออกกรมธรรม์สำเร็จ')
-        return redirect('/')
+    if request.method == 'POST':
+        form = SellingForm(request.POST, request.FILES)
+        if form.is_valid():
+            package = Package.objects.get(package_id=form.cleaned_data.get('package_id'))
+            total_price= package.price + (package.price*7/100)
+            # -----------------cusForm-------------------
+            cus = Customer(
+                cus_id="",
+                fname=form.cleaned_data.get('cus_fname'),
+                lname=form.cleaned_data.get('cus_lname'),
+                address=form.cleaned_data.get('cus_address'),
+                province=form.cleaned_data.get('cus_province'),
+                zipcode=form.cleaned_data.get('cus_zipcode'),
+                id_card=form.cleaned_data.get('cus_id_card'),
+                phone=form.cleaned_data.get('cus_phone'),
+                email=form.cleaned_data.get('cus_email')
+            )
+            cus.save()
+            this_cus = Customer.objects.latest('id')
+            print(this_cus)
+            # -------emp---------------
+            employee = Employee.objects.get(user=request.user.id)
+            # ------------car-----------------
+            car = Car(
+                car_id="",
+                car_number=form.cleaned_data.get('car_number'),
+                province=form.cleaned_data.get('car_province'),
+                brand=form.cleaned_data.get('car_brand'),
+                chassis_number=form.cleaned_data.get('car_chassis_number'),
+                model=form.cleaned_data.get('car_model'),
+                car_cc=form.cleaned_data.get('car_cc'),
+                car_type=form.cleaned_data.get('car_type'),
+                sit=form.cleaned_data.get('car_sit'))
+            car.save()
+            this_car = Car.objects.latest('id')
+            print(this_car)
+            # ---------------Tranfer-----------------------
+            tran = Tranfer(
+                emp_id=employee,
+                Package_id=package,
+                balance=total_price,
+                pic_balance=form.cleaned_data['pic_balance'])
+            tran.save()
+            doc_nbr = uuid.uuid4().hex[:12].upper()
+            ins = Insure(doc_nbr=doc_nbr, agent_code=employee,
+                         package_id=package,
+                         car_id=this_car, car_number=this_car.car_number,
+                         cus_id=this_cus,
+                         company_order=package.company_name,
+                         price=package.price, total_price=total_price,
+                         post_date=date.today())
+            ins.save()
+            messages.success(request, f'ได้รับข้อมูลกรมธรรม์แล้ว อยู่ระหว่างการรออนุมัติกรมธรรม์')
+            return HttpResponseRedirect('/')
     else:
-        packForm = PackSellForm()
-        cusForm = CustomerForm()
-        carForm = CarForm()
-        tranFrom = TranferForm()
-    
-    context = {
-        'packForm': packForm,
-        'cusForm': cusForm,
-        'carForm': carForm,
-        'tranFrom': tranFrom,
-    }
-    return render(request, "insurance/newSelling.html", context)
+        form = SellingForm()
+    return render(request, 'insurance/newSelling.html', {'form': form})
 
 
 

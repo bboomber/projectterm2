@@ -18,30 +18,30 @@
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col">
-                                            {{ cusForm.fname|as_crispy_field }}
+                                            {{ form.cus_fname|as_crispy_field }}
                                         </div>
                                         <div class="col">
-                                            {{ cusForm.lname|as_crispy_field }}
+                                            {{ form.cus_lname|as_crispy_field }}
                                         </div>
                                         <div class="col">
-                                            {{ cusForm.id_card|as_crispy_field }}
-                                        </div>
-                                    </div>
-                                    {{ cusForm.address|as_crispy_field }}
-                                    <div class="row">
-                                        <div class="col">
-                                            {{ cusForm.province|as_crispy_field }}
-                                        </div>
-                                        <div class="col">
-                                            {{ cusForm.zipcode|as_crispy_field }}
+                                            {{ form.cus_id_card|as_crispy_field }}
                                         </div>
                                     </div>
+                                    {{ form.cus_address|as_crispy_field }}
                                     <div class="row">
                                         <div class="col">
-                                            {{ cusForm.phone|as_crispy_field }}
+                                            {{ form.cus_province|as_crispy_field }}
                                         </div>
                                         <div class="col">
-                                            {{ cusForm.email|as_crispy_field }}
+                                            {{ form.cus_zipcode|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            {{ form.cus_phone|as_crispy_field }}
+                                        </div>
+                                        <div class="col">
+                                            {{ form.cus_email|as_crispy_field }}
                                         </div>
                                     </div>
                                 </div>
@@ -62,32 +62,32 @@
                                     <h3>ข้อมูลรถยนต์</h3>
                                     <div class="row">
                                         <div class="col">
-                                            {{ carForm.car_number|as_crispy_field }}
+                                            {{ form.car_number|as_crispy_field }}
                                         </div>
                                         <div class="col">
-                                            {{ carForm.province|as_crispy_field }}
+                                            {{ form.car_province|as_crispy_field }}
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            {{ carForm.model|as_crispy_field }}
+                                            {{ form.car_model|as_crispy_field }}
                                         </div>
                                         <div class="col">
-                                            {{ carForm.brand|as_crispy_field }}
+                                            {{ form.car_brand|as_crispy_field }}
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            {{ carForm.car_type|as_crispy_field }}
+                                            {{ form.car_type|as_crispy_field }}
                                         </div>
                                         <div class="col">
-                                            {{ carForm.car_cc|as_crispy_field }}
+                                            {{ form.car_cc|as_crispy_field }}
                                         </div>
                                         <div class="col">
-                                            {{ carForm.sit|as_crispy_field }}
+                                            {{ form.car_sit|as_crispy_field }}
                                         </div>
                                     </div>
-                                    {{ carForm.chassis_number|as_crispy_field }}
+                                    {{ form.car_chassis_number|as_crispy_field }}
                                     <hr>
                                 </div>
                             </div>
@@ -105,9 +105,9 @@
                             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <h3>แพ็คเกจ</h3>
-                                    {{ packForm|crispy }}
+                                    {{ form.package_id|as_crispy_field }}
                                     <h3>ข้อมูลประกันภัย</h3>
-                                    {{ tranFrom|crispy }}
+                                    {{ form.pic_balance|as_crispy_field }}
                                 </div>
                             </div>
                         </div>

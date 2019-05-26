@@ -24,7 +24,7 @@ class Car(models.Model):
     brand = models.CharField(max_length=30)
     chassis_number = models.CharField(max_length=30)
     model = models.CharField(max_length=30)
-    car_cc = models.IntegerField()
+    car_cc = models.CharField(max_length=30)
     car_type = models.CharField(max_length=30)
     sit = models.IntegerField()
 

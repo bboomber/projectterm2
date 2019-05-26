@@ -23,9 +23,6 @@ com_choice = (
 )
 pack_choice = lambda: [(pack.package_id, pack.package_name) for pack in Package.objects.filter(active=2).order_by('id')]
 
-class PackSellForm(forms.Form):
-    package_id = forms.ChoiceField(choices=pack_choice, label="เลือกแพ็คเกจ", widget=forms.Select(
-        attrs={'class': 'selectpicker', 'data-live-search': 'true'}))
 class PackageForm(forms.Form):
     package_id = forms.CharField(max_length=30, label="รหัสแพ็คเกจ")
     package_name = forms.CharField(max_length=30, label="ชื่อแพ็คเกจ")

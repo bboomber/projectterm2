@@ -3,59 +3,11 @@
 <h1>ลูกค้าใหม่</h1>
 
 <div class="container">
-    <form method="POST" enctype='multipart/form-data'>
-        <div class="list-group list-group-horizontal">
-            <div class="" id="headingOne">
-                <button class="btn" type="button" data-toggle="collapse" style="background-color: rgb(191, 221, 194);" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    head1
-                </button>
-            </div>
-            <div class="bg" id="headingTwo">
-                <button class="btn" type="button" data-toggle="collapse" style="background-color: rgb(191, 221, 194);" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwp">
-                    head2
-                </button>
-            </div>
-            <div class="bg" id="headingThree">
-                <button class="btn" type="button" data-toggle="collapse" style="background-color: rgb(191, 221, 194);" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                    head3
-                </button>
-            </div>
-        </div>
-        <div class="accordion" id="accordionExample">
-            <div class="col card m-3 border-0">
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                    <div class="card-body">
-                        text1
-                    </div>
-                </div>
-            </div>
-            <div class="col card m-3 border-0">
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                    <div class="card-body">
-                        text2
-                    </div>
-                </div>
-            </div>
 
-            <div class="col card m-3 border-0">
-                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                    <div class="card-body">
-                        text3
-                    </div>
-                </div>
-            </div>
-        </div>
+    {% csrf_token %} {{ tranForm|crispy }}
+    <h3>กดปุ่มสิ</h3>
 
-
-
-        {% csrf_token %} {{ tranForm|crispy }}
-        <h3>กดปุ่มสิ</h3>
-        {% if pic %}
-        <!-- <img src="../static/employee_control/{{ pic }}"> -->
-        {% endif %}
-
-
-        <button type="submit" class="btn btn-primary">submit</button>
+    <button type="submit" class="btn btn-primary">submit</button>
     </form>
 </div>
 
