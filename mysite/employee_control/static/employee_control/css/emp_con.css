@@ -6,6 +6,13 @@
     transition: 0.5s;
 }
 
+.dropdown-item:focus,
+.dropdown-item:hover {
+    color: #16181b;
+    text-decoration: none;
+    background-color: #0f2e4c;
+}
+
 .shadow {
     border: 1px solid #ccc;
     padding: 5px;
