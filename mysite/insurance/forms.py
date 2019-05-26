@@ -36,6 +36,30 @@ class InsureForm(forms.Form):
                   'total_price',
                   'post_date',
                   )
+class InsureEditForm(InsureForm):
+    doc_nbr = forms.CharField(max_length=30, label="รหัสกรมธรรม์")
+    package_id = forms.CharField()
+    cus_id = forms.CharField()
+    car_id = forms.CharField()
+    company_order = forms.CharField(max_length=30, label="บริษัทประกัน")
+    price = forms.FloatField(label="ราคาสุทธิ")
+    total_price = forms.FloatField(label="ราคารวม")
+    post_date = forms.DateField(widget=forms.DateInput(
+        attrs={'type': 'date'}
+    ), label="วันที่(ด/ว/ป)")
+
+    class Meta:
+        model = Insure
+        fields = ('doc_nbr',
+                  'package_id',
+                  'car_id',
+                  'cus_id',
+                  'car_number',
+                  'company_order',
+                  'price',
+                  'total_price',
+                  'post_date',
+                  )
 
 class NewCusForm(forms.Form):
     doc_nbr = forms.CharField(max_length=30, label="รหัสกรมธรรม์")

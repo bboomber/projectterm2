@@ -3,7 +3,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from .forms import InsureForm, TranferForm
+from .forms import InsureForm, TranferForm, InsureEditForm
 from .models import Insure, Tranfer
 from django.contrib.auth import login as auth_login, authenticate, login
 from django.contrib.auth.models import User
@@ -11,6 +11,8 @@ from employee_control.models import Employee
 from customer.models import Car, Customer
 from package_control.models import Package
 from django.contrib.auth.decorators import permission_required
+
+
 
 from django.views.generic import View
 from django.template.loader import get_template
@@ -53,8 +55,36 @@ def turnToPDF(request, id):
     return response
 
 def viewInsureDetail(request, id):
-    insure = get_object_or_404(Insure, id=id)
+    insure = get_object_or_404(Insure, id=1)
     return render(request, 'insurance/viewInsureDetail.html', {'insure': insure})
+
+def editInsure(request, id):
+    myInsure = Insure.objects.get(id=id)
+    doc_nbr = myInsure.doc_nbr
+    Package_d = myInsure.package_id
+    cus_id = myInsure.cus_id
+    company_order = myInsure.company_order
+    price = myInsure.price
+    total_price = myInsure.total_price
+    post_date = myInsure.post_date
+    context = {
+        "doc_nbr": doc_nbr,
+        'Package_d': Package_d,
+        'cus_id': cus_id,
+        'company_order': company_order,
+        'price': price,
+        'total_price': total_price,
+        'post_date': post_date
+    }
+    if request.method =="POST":
+        form = InsureForm(request.POST or None)
+        if form.is_valid():
+            print(form.cleaned_data.get('doc_nbr'))
+        else:
+            print('this form is not valid')
+    else:
+        form = InsureForm(initial=context)
+    return render(request, 'insurance/editInsure.html', {'form': form})
 
 @login_required
 def sellInsure(request):

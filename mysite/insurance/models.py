@@ -2,6 +2,8 @@ from django.db import models
 from employee_control.models import Employee
 from customer.models import Customer, Car
 from package_control.models import Package
+
+from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
@@ -19,7 +21,13 @@ class Insure(models.Model):
     confirm = models.IntegerField(default=2)
 
     def __str__(self):
-        return self.doc_nbr + ' Detail'
+        return str(self.id)
+
+@receiver(post_save, sender=Insure)
+def update_Insure(sender, instance, updated, **kwargs):
+    if updated:
+        Insure.objects.create(Insure=instane)
+    instance.insure.save()
 
 class Tranfer(models.Model):
     emp_id = models.ForeignKey(Employee, on_delete=models.CASCADE)
