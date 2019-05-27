@@ -9,8 +9,8 @@
             <hr> Doc Nbr :{{ insure.doc_nbr }}<br /> agent code :{{ insure.agent_code }}<br /> post date :{{ insure.post_date }}<br /> company_order :{{ insure.company_order }}<br />
 
             <hr>
-            <button type="button" class="btn btn-warning">แก้ไขข้อมูล</button>
-            <a href="/pdf/{{ insure.id }}" class="btn btn-info"> save เป็น pdf</a>
+            <a href="/insure/edit/{{insure.id}}" class="btn btn-warning">แก้ไขข้อมูล</a>
+            <a href="/pdf/{{ insure.id }}" class="btn btn-info" target="_blank"> save เป็น pdf</a>
             <br />
             <br />
         </div>
