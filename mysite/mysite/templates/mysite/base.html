@@ -75,13 +75,17 @@
 
             </ul>
             <form class="form-inline my-2 my-lg-0">
-                {% if user.is_authenticated %}
-                <!-- <div id="ex3">
-                    <span class="p1 fa-stack fa-lg has-badge" data-count="3">
-                        <i class="p2 fa fa-circle fa-stack-1x fa-lg text-gray"></i>
-                        <i class="p3 fa fa-bell fa-stack-1x fa-sm"></i>
-                    </span>
-                </div> -->
+                {% if perms.employee_control.is_manager %}
+                <div id="ex3">
+                    <a href="insure">
+                        <span class="p1 fa-stack fa-lg has-badge" data-count="{{ insureNum }}">
+                            <i class="p2 fa fa-circle fa-stack-1x fa-lg text-gray"></i>
+                            <i class="p3 fa fa-bell fa-stack-1x fa-sm"></i>
+                        </span>
+                    </a>
+                </div>
+                {% endif %} {% if user.is_authenticated %}
+
 
                 <a href="/profile/" class="btn btn-outline-light mr-1 ml-1" role="button">User</a>
                 <button type="button" class="btn btn-outline-danger bg-dark mr-1 ml-1" data-toggle="modal" data-target="#logoutmodal">
