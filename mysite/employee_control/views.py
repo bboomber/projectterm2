@@ -8,7 +8,7 @@ from insurance.models import Insure
 from django.contrib.auth.models import User, Permission
 from operator import itemgetter
 from .forms import Roleform
-from user.forms import UserRegisterForm
+from user.forms import UserRegisterForm, EditProfileForm
 from django.contrib.auth.decorators import permission_required
 
 # Create your views here.
@@ -117,6 +117,9 @@ class MyMonth(object):
     ins_list = []
 
 
+def editEmp(request, id):
+    employee = get_object_or_404(Employee, id=id)
+    return render(request, 'employee_control.editEmp.html', {'form': form})
 
 @permission_required('employee_control.is_admin', raise_exception=True)
 def editRole(request, id):
