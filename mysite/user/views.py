@@ -42,8 +42,7 @@ def editProfile(request):
         if not myProfileform.is_valid():
             myProfileform.cleaned_data.get('fname')
             myProfile.fname = myProfileform.cleaned_data.get('fname')
-            myProfile.ln
-            ame = myProfileform.cleaned_data.get('lname')
+            myProfile.lname = myProfileform.cleaned_data.get('lname')
             myProfile.id_card = myProfileform.cleaned_data.get('id_card')
             myProfile.phone1 = myProfileform.cleaned_data.get('phone1')
             myProfile.phone2 = myProfileform.cleaned_data.get('phone2')

@@ -234,7 +234,9 @@ def newSelling(request):
                          price=package.price, total_price=total_price,
                          post_date=date.today())
             ins.save()
-            messages.success(request, f'ได้รับข้อมูลกรมธรรม์แล้ว อยู่ระหว่างการรออนุมัติกรมธรรม์')
+            your_ins = Insure.objectslatest('id')
+            # messages.success(request, f'ได้รับข้อมูลกรมธรรม์แล้ว อยู่ระหว่างการรออนุมัติกรมธรรม์')
+            messages.success(request, f'ออกกรมธรรม์สำเร็จแล้ว <a href="/"></a>')
             return HttpResponseRedirect('/')
     else:
         form = SellingForm()
