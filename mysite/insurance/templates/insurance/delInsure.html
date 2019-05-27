@@ -1,0 +1,28 @@
+{% extends "mysite/base.html" %} {% block content %} 
+
+
+<body class="bg-gray">
+    <div class="bg-white">
+        <div class="container mt-5">
+            <br />
+            <h1>หน้ายกเลิกกรมธรรม์ {{ insure.doc_nbr }}</h1>
+            เลขกรมธรรม์: {{ insure.doc_nbr }}<br>
+            ทะเบียนรถยนต์ : {{ insure.car_number }}<br>
+            บริษัทประกันภัย : {{ insure.company_order }}<br>
+            ราคา : {{ insure.price }} บาท<br>
+            ราคาสุทธิ : {{ insure.total_price }} บาท<br>
+            วันที่ออกงาน: {{ insure.post_date }}<br>
+            <!-- <hr> Doc Nbr :{{ insure.doc_nbr }}<br /> agent code :{{ insure.agent_code }}<br /> post date :{{ insure.post_date }}<br /> company_order :{{ insure.company_order }}<br /> -->
+
+            <hr>
+            <form method="POST">
+                ยืนยันการลบกรมธรรม์
+                {% csrf_token %}
+                <button name="subject" class="btn btn-info" type="submit" value="yes">ยกเลิก</button>
+                <button name="subject" class="btn btn-warning" type="submit" value="no">ไม่ยกเลิก</button>
+            </form>
+            <br />
+            <br />
+        </div>
+    </div>
+    {% endblock %}

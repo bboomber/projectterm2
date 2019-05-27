@@ -17,14 +17,13 @@
         <ul>
             {% for ins in ins_list %}
             <tr>
-                <td><a href="/insure/{{ ins.id }}">{{ ins.doc_nbr }}</a></td>
+                <td><a href="/insure/confirm/{{ ins.id }}">{{ ins.doc_nbr }}</a></td>
                 <td>{{ ins.agent_code }}</td>
                 <td>{{ ins.package_id }}</td>
-                <td class="text-center"><a class='btn btn-info btn-xs' href="/insure/{{ ins.id }}"><span
-                                    class="glyphicon glyphicon-edit"></span>
-                                View</a>
-                    <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>
-                                Del</a></td>
+                <td class="text-center">
+                    <a class='btn btn-info btn-xs'  href="/insure/confirm/{{ ins.id }}">
+                        <span class="glyphicon glyphicon-edit"></span> ดูข้อมูล</a>
+                </td>
             </tr>
             {% endfor %}
         </ul>

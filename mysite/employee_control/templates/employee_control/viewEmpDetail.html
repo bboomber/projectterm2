@@ -14,7 +14,7 @@
             <br /> อีเมลล์ :{{ employee.email }}
             <br /> ที่อยู่ :{{ employee.address }}
             <hr> {% if perms.employee_control.is_manager %}
-            <button type="button" class="btn btn-warning">แก้ไขข้อมูล
+            <a class='btn btn-warning btn-xs' href="/employee/{{ employee.user.id }}/edit">แก้ไขบทบาท</a>
             </button> {% endif %} {% if perms.employee_control.is_admin %} {% if employee.user %}
             <a class='btn btn-info btn-xs' href="/role/{{ employee.user.id }}">แก้ไขบทบาท</a> {% endif %} {% endif %}
             <br />

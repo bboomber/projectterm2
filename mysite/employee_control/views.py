@@ -7,7 +7,7 @@ from django.contrib import messages
 from insurance.models import Insure
 from django.contrib.auth.models import User, Permission
 from operator import itemgetter
-from .forms import Roleform
+from .forms import Roleform, Empform
 from user.forms import UserRegisterForm, EditProfileForm
 from django.contrib.auth.decorators import permission_required
 
@@ -15,10 +15,31 @@ from django.contrib.auth.decorators import permission_required
 
 def editEmp(request, id):
     employee = get_object_or_404(Employee, id=id)
+    context = {
+        'fname': employee.fname,
+        'lname': employee.lname,
+        'id_card': employee.id_card,
+        'phone1': employee.phone1,
+        'phone2': employee.phone2,
+        'email': employee.email,
+        'address': employee.address,
+    }
+    
     if request.method == 'POST':
-        print('This is POST')
+        form = Empform(request.POST or None)
+        if not form.is_valid():
+            employee.fname = form.cleaned_data.get('fname')
+            employee.lname = form.cleaned_data.get('lname')
+            employee.id_card = form.cleaned_data.get('id_card')
+            employee.phone1 = form.cleaned_data.get('phone1')
+            employee.phone2 = form.cleaned_data.get('phone2')
+            employee.email = form.cleaned_data.get('email')
+            employee.address = form.cleaned_data.get('address')
+            employee.save()
+        messages.success(request, f'แก้ไขข้อมูลนายหน้าสำเร็จ')
+        return redirect('/')
     else:
-        form = EditProfileForm()
+        form = Empform(initial=context)
     return render(request, 'employee_control/editEmp.html', {'form': form})
 
 

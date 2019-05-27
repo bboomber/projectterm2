@@ -1,0 +1,32 @@
+{% extends "mysite/base.html" %} {% block content %}  {% load static %}
+
+
+<body class="bg-gray">
+    <div class="bg-white">
+        <div class="container mt-5">
+            <br />
+            <h1>หน้าอนุมัติกรมธรรม์ {{ insure.doc_nbr }}</h1>
+            เลขกรมธรรม์: {{ insure.doc_nbr }}<br>
+            ทะเบียนรถยนต์ : {{ insure.car_number }}<br>
+            บริษัทประกันภัย : {{ insure.company_order }}<br>
+            ราคา : {{ insure.price }} บาท<br>
+            ราคาสุทธิ : {{ insure.total_price }} บาท<br>
+            วันที่ออกงาน: {{ insure.post_date }}<br>
+            นายหน้า : {{ emp.fname }}<br>
+            รถยนต์: {{ car.car_cc }}<br>
+            ลูกค้า: {{ cus.fname }} {{ cus.lname }}<br>
+            แพ็กเกจ: {{ pack.package_name }}<br>
+            <!-- <img src="../employee_control/{{ pic.pic_balance }}"> -->
+            <hr>
+            <form method="POST">
+                การอนุมัติกรมธรรม์
+                {% csrf_token %}
+                <button name="subject" class="btn btn-info" type="submit" value="yes">อนุมัติ</button>
+                <button name="subject" class="btn btn-warning" type="submit" value="no">ไม่อนุมัติ</button>
+            </form>
+            <br />
+            <br />
+        </div>
+    </div>
+    </body>
+    {% endblock %}

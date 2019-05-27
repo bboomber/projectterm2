@@ -18,9 +18,6 @@ from django.contrib.auth.decorators import permission_required
 import uuid
 from datetime import date
 
-
-
-
 from django.views.generic import View
 from django.template.loader import get_template
 from .utils import render_to_pdf, link_callback
@@ -61,9 +58,22 @@ def turnToPDF(request, id):
     pisaStatus = pisa.CreatePDF(html, dest=response, encoding='utf-8', link_callback=link_callback)
     return response
 
+def delInsure(request, id):
+    insure = Insure.objects.get(id=id)
+    if request.method=='POST':
+        confirm = request.POST['subject']
+        if confirm =='yes':
+            Insure.objects.get(id=id).delete()
+            messages.success(request, f'ลบกรมธรรม์แล้ว')
+        else:
+            messages.warning(request, f'ยังไม่ได้ลบกรมธรรม์')
+        insure.save()
+        return redirect('/')
+    return render(request, 'insurance/delInsure.html', {'insure': insure})
+
 @login_required
 def viewInsureDetail(request, id):
-    insure = get_object_or_404(Insure, id=1)
+    insure = get_object_or_404(Insure, id=id)
     return render(request, 'insurance/viewInsureDetail.html', {'insure': insure})
 
 @login_required
@@ -134,13 +144,35 @@ def sellInsure(request):
         form = InsureForm()
     return render(request, 'insurance/sellInsure.html', {'form': form})
 
+@permission_required('employee_control.is_manager', raise_exception=True)
+def setConfirm(request, id):
+    insure = Insure.objects.get(id=id)
+    emp = Employee.objects.get(id=insure.agent_code_id)
+    car = Car.objects.get(id=insure.car_id_id)
+    cus = Customer.objects.get(id=insure.cus_id_id)
+    pack = Package.objects.get(id= insure.package_id_id)
+    pic = Tranfer.objects.filter(emp_id = emp).last()
+    print(pic.pic_balance)
+    if request.method=='POST':
+        confirm = request.POST['subject']
+        if confirm =='yes':
+            insure.confirm = 1
+            messages.success(request, f'อนุมัติกรมธรรมเรียบร้อยแล้ว')
+        else:
+            insure.delete()
+            messages.warning(request, f'คุณไม่อนุมัติกรมธรรม์')
+        insure.save()
+        return redirect('/')
+    return render(request, 'insurance/setConfirm.html', {'insure': insure, 'car': car, 'cus': cus, 'pack': pack, 'emp': emp, 'pic':pic})
+
+@permission_required('employee_control.is_manager', raise_exception=True)
 def showConfirmInsure(request):
     ins_list = Insure.objects.filter(confirm=2)
     return render(request, 'insurance/showConfirmInsure.html', {'ins_list': ins_list})
 
 @permission_required('employee_control.is_manager', raise_exception=True)
 def showAllInsure(request):
-    ins_list = Insure.objects.order_by('id')[:1000]
+    ins_list = Insure.objects.filter(confirm=1).order_by('id')[:1000]
     return render(request, 'insurance/showAllInsure.html', {'ins_list': ins_list})
 
 @permission_required('employee_control.is_manager', raise_exception=True)
@@ -166,7 +198,7 @@ def showPredict(request):
 @login_required
 def showEmpInsure(request):
     emp_id = Employee.objects.get(user = request.user.id)
-    ins_list = Insure.objects.filter(agent_code = emp_id)[:800]
+    ins_list = Insure.objects.filter(agent_code = emp_id, confirm=1)[:800]
     return render(request, 'insurance/showEmpInsure.html', {'ins_list': ins_list})
 
 @login_required

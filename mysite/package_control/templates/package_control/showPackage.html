@@ -9,7 +9,7 @@
 
 <div class="row mb-3">
     <div class="col-1"></div> {% for package in pack_list %} {% if package.id|divisibleby:3 %}
-    <div class="col-sm">
+    <div class="col-sm col-3">
         <div class="card">
             <h5 class="card-header">Package : {{ package.package_name }}</h5>
             <div class="card-body">
@@ -28,7 +28,7 @@
 <div class="row mb-3">
     <div class="col-1"></div>
     {% else %}
-    <div class="col-sm">
+    <div class="col-sm col-3">
         <div class="card">
             <h5 class="card-header">Package : {{ package.package_name }}</h5>
             <div class="card-body">
