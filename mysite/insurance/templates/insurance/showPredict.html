@@ -7,30 +7,24 @@
     <br>
     <div class="col-sm-12">
         <div class="form-group">
-            <div class="input-group date" id="start-date" data-target-input="nearest" style="justify-content: center">
+            <div class="input-group date" id="div-start-date" data-target-input="nearest" style="justify-content: center">
                 <div class="col-3">
-                    <label for="start-date">Select start date:</label>
+                    <label for="div-start-date">Select start date:</label>
                 </div>
                 <div class="input-group col-5">
-                    <input type="text" class="form-control datetimepicker-input" data-target="#start-date"/>
-                    <div class="input-group-append" data-target="#start-date" data-toggle="datetimepicker">
-                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                    </div>
+                    <input type="text" id="start-date" class="form-control datepicker-here" data-language='en' data-min-view="months" data-view="months" data-date-format="MM yyyy" />
                 </div>
             </div>
         </div>
         <div class="form-group">
-            <div class="input-group date" id="end-date" data-target-input="nearest" style="justify-content: center">
+            <div class="input-group date" id="div-end-date" data-target-input="nearest" style="justify-content: center">
                 <div class="col-3">
-                    <label for="end-date">Select end date:</label>
+                    <label for="div-end-date">Select end date:</label>
                 </div>
                 <div class="input-group col-5">
-                    <input type="text" class="form-control datetimepicker-input" data-target="#end-date"/>
-                    <div class="input-group-append" data-target="#end-date" data-toggle="datetimepicker">
-                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                    </div>
-                </div>        
-            </div> 
+                    <input type="text" id="end-date" class="form-control datepicker-here" data-language='en' data-min-view="months" data-view="months" data-date-format="MM yyyy" />
+                </div>
+            </div>
             <br>
             <div class="input-group" style="justify-content: center"><button onclick="btnDidTapped()" type="button" class="btn btn-primary">Change</button></div>
         </div>
@@ -42,32 +36,40 @@
 </div>
 
 <script src="{% static 'employee_control/js/moment.js' %}"></script>
-<script src="{% static 'employee_control/js/tempusdominus-bootstrap-4.min.js' %}"></script>
 <script src="{% static 'employee_control/js/predictGraphJS.js' %}"></script>
 <script>
-    $('#start-date').datetimepicker({
-        viewMode: 'years',
-        format: 'MM/YYYY'
-    });
+    var minDate = new Date("2017-01-01")
+    var maxDate = new Date("2017-12-31")
+    var startMonth = ""
+    var startYear = ""
+    var endMonth = ""
+    var endYear = ""
 
-    $('#end-date').datetimepicker({
-        viewMode: 'years',
-        format: 'MM/YYYY'
-    });
+    $('#start-date').datepicker({
+        language: 'en',
+        minDate: minDate,
+        maxDate: maxDate,
+        onSelect: function(fd, date) {
+            startMonth = date.getMonth() + 1;
+            startYear = date.getFullYear();
+        }
+    })
+
+    $('#end-date').datepicker({
+        language: 'en',
+        minDate: minDate,
+        maxDate: maxDate,
+        onSelect: function(fd, date) {
+            endMonth = date.getMonth() + 1;
+            endYear = date.getFullYear();
+        }
+    })
 
     $(document).ready(function() {
         showGraphWithInsure()
     });
 
     function btnDidTapped() {
-        let startDate = $('#start-date').data('date').split('/');
-        let startMonth = startDate[0];
-        let startYear = startDate[1];
-
-        let endDate = $('#end-date').data('date').split('/');
-        let endMonth = endDate[0];
-        let endYear = endDate[1];
-
         let insure_list = {{ insure_list|safe }}
         let months = {{ months|safe }}
         let new_month = months.slice(startMonth - 1, endMonth);
