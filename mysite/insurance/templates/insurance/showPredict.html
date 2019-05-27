@@ -35,7 +35,6 @@
     <br><br>
 </div>
 
-<script src="{% static 'employee_control/js/moment.js' %}"></script>
 <script src="{% static 'employee_control/js/predictGraphJS.js' %}"></script>
 <script>
     var minDate = new Date("2017-01-01")
@@ -49,6 +48,7 @@
         language: 'en',
         minDate: minDate,
         maxDate: maxDate,
+        autoClose: true,
         onSelect: function(fd, date) {
             startMonth = date.getMonth() + 1;
             startYear = date.getFullYear();
@@ -59,6 +59,7 @@
         language: 'en',
         minDate: minDate,
         maxDate: maxDate,
+        autoClose: true,
         onSelect: function(fd, date) {
             endMonth = date.getMonth() + 1;
             endYear = date.getFullYear();
