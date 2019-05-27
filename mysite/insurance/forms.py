@@ -37,7 +37,8 @@ class InsureForm(forms.Form):
         attrs={'class': 'selectpicker', 'data-live-search': 'true'}))
     car_id = forms.ChoiceField(choices=car_choice, label="เลือกรถยนต์", widget=forms.Select(
         attrs={'class': 'selectpicker', 'data-live-search': 'true'}))
-    company_order = forms.CharField(max_length=30, label="บริษัทประกัน")
+    company_order = forms.ChoiceField(choices=com_choice, label="เลือกรถยนต์", widget=forms.Select(
+        attrs={'class': 'selectpicker', 'data-live-search': 'true'}))
     price = forms.FloatField(label="ราคาสุทธิ")
     total_price = forms.FloatField(label="ราคารวม")
     post_date = forms.DateField(widget=forms.DateInput(

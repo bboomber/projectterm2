@@ -20,6 +20,7 @@ from datetime import date
 
 
 
+
 from django.views.generic import View
 from django.template.loader import get_template
 from .utils import render_to_pdf, link_callback
@@ -69,7 +70,7 @@ def viewInsureDetail(request, id):
 def editInsure(request, id):
     myInsure = Insure.objects.get(id=id)
     doc_nbr = myInsure.doc_nbr
-    Package_d = myInsure.package_id
+    package_id = myInsure.package_id
     cus_id = myInsure.cus_id
     company_order = myInsure.company_order
     price = myInsure.price
@@ -77,7 +78,7 @@ def editInsure(request, id):
     post_date = myInsure.post_date
     context = {
         "doc_nbr": doc_nbr,
-        'Package_d': Package_d,
+        'package_id': package_id,
         'cus_id': cus_id,
         'company_order': company_order,
         'price': price,
@@ -92,7 +93,10 @@ def editInsure(request, id):
             print('this form is not valid')
     else:
         form = InsureForm(initial=context)
-    return render(request, 'insurance/editInsure.html', {'form': form})
+    return render(request, 'insurance/editInsure.html', {
+        'form': form,
+        'myInsure': myInsure,
+        })
 
 @login_required
 def sellInsure(request):
@@ -130,6 +134,9 @@ def sellInsure(request):
         form = InsureForm()
     return render(request, 'insurance/sellInsure.html', {'form': form})
 
+def showConfirmInsure(request):
+    ins_list = Insure.objects.filter(confirm=2)
+    return render(request, 'insurance/showConfirmInsure.html', {'ins_list': ins_list})
 
 @permission_required('employee_control.is_manager', raise_exception=True)
 def showAllInsure(request):

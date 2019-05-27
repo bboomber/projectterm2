@@ -4,9 +4,26 @@
     <div class="bg-white">
         <div class="container mt-5">
             <form method="post">
-                <h1>แก้ไขข้อมูล insure</h1>
+                <h1>แก้ไขข้อมูลกรมธรรม์</h1>
                 <div class="container">
-                    {% csrf_token %} {{ form|crispy }}
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-sm">
+                            {{ form.doc_nbr|as_crispy_field}}
+                        </div>
+                        <div class="col-sm">
+                          One of three columns
+                        </div>
+                        <div class="col-sm">
+                          One of three columns
+                        </div>
+                      </div>
+                    
+                    {{ myInsure.package_id.package_name }}
+                    {{ form.cus_id|as_crispy_field}}
+                    {{ form.car_id|as_crispy_field}}
+                    {{ form.company_order|as_crispy_field}}
+                    <!-- {{ form|crispy }} -->
                 </div>
 
                 <div class="container">

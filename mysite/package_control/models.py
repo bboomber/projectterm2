@@ -12,7 +12,7 @@ class Package(models.Model):
     active = models.IntegerField(default=2)
 
     def __str__(self):
-        return 'ID: ' + str(self.id) + ' ,' + self.package_name+ ' ,' + self.company_name
+        return 'ID: ' + str(self.id) + ' ,' + str(self.package_name) + ' ,' + str(self.company_name)
 
 class Promotion(models.Model):
     promotion_name = models.CharField(max_length=30)
