@@ -3,7 +3,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
-from .forms import InsureForm, TranferForm, InsureEditForm, SellingForm
+from .forms import InsureForm, TranferForm, InsureEditForm, SellingForm, EdittingForm
 from employee_control.forms import Empform
 from package_control.forms import PackageForm
 from customer.forms import CarForm, CustomerForm
@@ -79,33 +79,50 @@ def viewInsureDetail(request, id):
 @login_required
 def editInsure(request, id):
     myInsure = Insure.objects.get(id=id)
-    doc_nbr = myInsure.doc_nbr
-    package_id = myInsure.package_id
-    cus_id = myInsure.cus_id
-    company_order = myInsure.company_order
-    price = myInsure.price
-    total_price = myInsure.total_price
-    post_date = myInsure.post_date
-    context = {
-        "doc_nbr": doc_nbr,
-        'package_id': package_id,
-        'cus_id': cus_id,
-        'company_order': company_order,
-        'price': price,
-        'total_price': total_price,
-        'post_date': post_date
+    editForm = EdittingForm()
+    cus = myInsure.cus_id
+    package = myInsure.package_id
+    car = myInsure.car_id
+    emp = myInsure.agent_code
+    context_edit = {
+        'cus_fname': cus.fname,'cus_lname': cus.lname,'cus_address': cus.address,'cus_province': cus.province,
+        'cus_zipcode': cus.zipcode,'cus_id_card': cus.id_card, 'cus_phone': cus.phone,'cus_email': cus.email,
+
+        'car_number': car.car_number,'car_province': car.province,'car_brand': car.brand,'car_chassis_number': car.chassis_number,
+        'car_model': car.model,'car_cc': car.car_cc,'car_type': car.car_type,'car_sit': car.sit,
+
+        'package_name': package.package_name
     }
     if request.method =="POST":
-        form = InsureForm(request.POST or None)
-        if form.is_valid():
-            print(form.cleaned_data.get('doc_nbr'))
-        else:
-            print('this form is not valid')
+        # form = InsureForm(request.POST or None)
+        editForm = EdittingForm(request.POST or None)
+        if not editForm.is_valid():
+            cus.fname=editForm.cleaned_data.get('cus_fname')
+            cus.lname=editForm.cleaned_data.get('cus_lname')
+            cus.address=editForm.cleaned_data.get('cus_address')
+            cus.province=editForm.cleaned_data.get('cus_province')
+            cus.zipcode=editForm.cleaned_data.get('cus_zipcode')
+            cus.id_card=editForm.cleaned_data.get('cus_id_card')
+            cus.phone=editForm.cleaned_data.get('cus_phone')
+            cus.email=editForm.cleaned_data.get('cus_email')
+            cus.save()
+            car.car_number=editForm.cleaned_data.get('car_number')
+            car.province=editForm.cleaned_data.get('car_province')
+            car.brand=editForm.cleaned_data.get('car_brand')
+            car.chassis_number=editForm.cleaned_data.get('car_chassis_number')
+            car.model=editForm.cleaned_data.get('car_model')
+            car.car_cc=editForm.cleaned_data.get('car_cc')
+            car.car_type=editForm.cleaned_data.get('car_type')
+            car.sit=editForm.cleaned_data.get('car_sit')
+            car.save()
+            messages.success(request, f'แก้ไขกรมธรรม์สำเร็จ')
+        return redirect('/')
     else:
-        form = InsureForm(initial=context)
+        # form = InsureForm(initial=context)
+        editForm = EdittingForm(initial=context_edit)
     return render(request, 'insurance/editInsure.html', {
-        'form': form,
         'myInsure': myInsure,
+        'editform': editForm
         })
 
 @login_required

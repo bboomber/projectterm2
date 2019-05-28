@@ -119,4 +119,28 @@ class SellingForm(forms.Form):
     package_id = forms.ChoiceField(choices=pack_choice, label="เลือกแพ็คเกจ", widget=forms.Select(
         attrs={'class': 'selectpicker', 'data-live-search': 'true'}))
     # ------------------
-    pic_balance = forms.ImageField()
+    pic_balance = forms.ImageField(label="หลักฐานการชำระเงิน")
+
+class EdittingForm(forms.Form):
+    cus_fname = forms.CharField(max_length=30, label="ชื่อ")
+    cus_lname = forms.CharField(max_length=30, label="นามสกุล")
+    cus_address = forms.CharField(max_length=200, label="ที่อยู่")
+    cus_province = forms.CharField(max_length=30, label="จังหวัด")
+    cus_zipcode = forms.CharField(max_length=5, label="รหัสไปรษณีย์")
+    cus_id_card = forms.CharField(max_length=13, label="เลขบัตรประชาชน")
+    cus_phone = forms.CharField(max_length=15, label="เบอร์โทรศัพท์")
+    cus_email = forms.EmailField(label="อีเมลล์")
+    # -------------
+    car_number = forms.CharField(max_length=30, label="ทะเบียนรถ")
+    car_province = forms.CharField(max_length=30, label="จังหวัดทะเบียน")
+    car_brand = forms.CharField(max_length=30, label="ยี่ห้อรถ")
+    car_chassis_number = forms.CharField(max_length=30, label="เลขตัวถัง")
+    car_model = forms.CharField(max_length=30, label="รุ่นรถยนต์")
+    car_cc = forms.CharField(label="ซีซี")
+    car_type = forms.CharField(max_length=30, label="ประเภทรถยนต์")
+    car_sit = forms.IntegerField(label="ที่นั่ง")
+    # ------------------
+    package_name = forms.CharField(label="แพ็คเกจ", widget=forms.TextInput(
+        attrs={'readonly':'readonly'}))
+
+    # ------------------

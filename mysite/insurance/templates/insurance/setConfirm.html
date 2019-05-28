@@ -6,17 +6,38 @@
         <div class="container mt-5">
             <br />
             <h1>หน้าอนุมัติกรมธรรม์ {{ insure.doc_nbr }}</h1>
-            เลขกรมธรรม์: {{ insure.doc_nbr }}<br>
-            ทะเบียนรถยนต์ : {{ insure.car_number }}<br>
-            บริษัทประกันภัย : {{ insure.company_order }}<br>
-            ราคา : {{ insure.price }} บาท<br>
-            ราคาสุทธิ : {{ insure.total_price }} บาท<br>
-            วันที่ออกงาน: {{ insure.post_date }}<br>
+            <hr>
+            <div class="row">
+                <div class="col-sm">
+                    เลขกรมธรรม์: {{ insure.doc_nbr }}
+                </div>
+                <div class="col-sm">
+                    ทะเบียนรถยนต์ : {{ insure.car_number }}
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col-sm">
+                        บริษัทประกันภัย : {{ insure.company_order }}
+                    </div>
+                    <div class="col-sm">
+                        ราคา : {{ insure.price }} บาท
+                    </div>
+                </div>
+            <div class="row">
+                <div class="col-sm">
+                    ราคาสุทธิ : {{ insure.total_price }} บาท
+                </div>
+                <div class="col-sm">
+                    วันที่ออกงาน: {{ insure.post_date }}
+                </div>
+            </div>
             นายหน้า : {{ emp.fname }}<br>
             รถยนต์: {{ car.car_cc }}<br>
             ลูกค้า: {{ cus.fname }} {{ cus.lname }}<br>
             แพ็กเกจ: {{ pack.package_name }}<br>
-            <!-- <img src="../employee_control/{{ pic.pic_balance }}"> -->
+            <hr>
+            <h4>หลักฐานการโอนเงิน</h4>
+            {% if pic %}<img src="../../static/employee_control/{{ pic.pic_balance }}" width="500px"> {% endif %}
             <hr>
             <form method="POST">
                 การอนุมัติกรมธรรม์
