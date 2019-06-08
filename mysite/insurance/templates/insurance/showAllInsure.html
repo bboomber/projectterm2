@@ -8,10 +8,10 @@
     <table id="table" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
-                <th>Doc Number</th>
-                <th>Agent_code</th>
-                <th>Package</th>
-                <th class="text-center">Action</th>
+                <th>เลขกรมธรรม์</th>
+                <th>รหัสของนายหน้า</th>
+                <th>ชื่อแพ็กเกจ</th>
+                <th></th>
             </tr>
         </thead>
         <ul>
@@ -19,7 +19,7 @@
             <tr>
                 <td><a href="/insure/{{ ins.id }}">{{ ins.doc_nbr }}</a></td>
                 <td>{{ ins.agent_code }}</td>
-                <td>{{ ins.package_id }}</td>
+                <td>{{ ins.package_id.package_name }}</td>
                 <td class="text-center"><a class='btn btn-info btn-xs' href="/insure/{{ ins.id }}"><span
                                     class="glyphicon glyphicon-edit"></span>
                                 ดู</a>

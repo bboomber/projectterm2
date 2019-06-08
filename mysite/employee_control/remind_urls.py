@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.remind, name='remind'),
+    path('1', views.remind, name='remind'),
     path('2', views.remind2, name='remind2'),
     path('3', views.remind3, name='remind3'),
     path('4', views.remind4, name='remind4'),

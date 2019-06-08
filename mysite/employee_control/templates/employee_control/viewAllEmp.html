@@ -6,10 +6,10 @@
     <table id="table" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>
-                <th>Agent Code</th>
-                <th>first Name</th>
-                <th>Last Name</th>
-                <th class="text-center">Action</th>
+                <th>รหัสพนักงาน</th>
+                <th>ชื่อ</th>
+                <th>นามสกุล</th>
+                <th class="text-center"></th>
             </tr>
         </thead>
         <ul>
@@ -19,9 +19,9 @@
                 <td>{{ emp.fname }}</td>
                 <td>{{ emp.lname }}</td>
                 <td class="text-center"><a class='btn btn-info btn-xs' href="/employee/{{ emp.id }}"><span class="glyphicon glyphicon-edit"></span>
-                        edit</a>
-                    <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>
-                        Del</a></td>
+                        ดู</a>
+                    <a href="/employee/{{ emp.id }}/edit" class="btn btn-warning btn-xs"><span class="glyphicon glyphicon-remove"></span>
+                        แก้ไข</a></td>
             </tr>
         </ul>
 </div>
