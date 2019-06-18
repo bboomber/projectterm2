@@ -1,0 +1,30 @@
+{% extends "mysite/base.html" %} {% block content %} {% load crispy_forms_tags %}
+
+<div class="container">
+    <br />
+    <h2 class="text-center"><b>งานต่ออายุของคุณ</b></h2>
+    <div class="row">
+        <div class="col-2 mt-3">
+            <div class="btn-group-vertical mr-2 mt-5" role="group" aria-label="Second group">
+                <a href="/remind" class="btn bg-darkblue text-white">มกรา Jan</a>
+                <a href="/remind/2" class="btn bg-darkblue text-white">กุมภา Feb</a>
+                <a href="/remind/3" class="btn bg-darkblue text-white">มีนา March</a>
+                <a href="/remind/4" class="btn bg-darkblue text-white">เมษา Apr</a>
+                <a href="/remind/5" class="btn bg-darkblue text-white">พฤษภา May</a>
+                <a href="/remind/6" class="btn bg-darkblue text-white">มิถุนา June</a>
+                <div class="dropdown-divider"></div>
+                <a href="/remind/7" class="btn bg-darkblue text-white">กรกฎา July</a>
+                <a href="/remind/8" class="btn bg-darkblue text-white">สิงหา Aug</a>
+                <a href="/remind/9" class="btn bg-darkblue text-white">กันยา Sep</a>
+                <a href="/remind/10" class="btn bg-darkblue text-white">ตุลา Oct</a>
+                <a href="/remind/11" class="btn bg-darkblue text-white">พฤศจิกา Nov</a>
+                <a href="/remind/12" class="btn bg-darkblue text-white">ธันวา Dec</a>
+            </div>
+        </div>
+        <div class="col-sm mt-5">
+            {% block notice %} {% endblock %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

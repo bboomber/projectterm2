@@ -1,0 +1,56 @@
+{% extends "mysite/base.html" %} {% load crispy_forms_tags %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'employee_control/css/carousel.css' %}">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<body class="bg-darkblue">
+    <div class="jumbotron jumbotron-fluid bg-gray2 text-center">
+        <br><br>
+        <div class="row col-lg-11">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <div class="container bg-white add-radius p-5 shadow">
+                    <img src="{% static 'employee_control/image/amarin.png' %}" class="mb-2">
+                    <h1 class="display-4"><b>Amarin Broker</b></h1>
+                    บริษัทอมรินทร์ โบรคเกอร์ จำกัด
+                </div>
+            </div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-5">
+                <div class="container bg-white add-radius p-5 shadow">
+                    {% if user.is_authenticated %}
+                    <div class="container">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img src="https://www.jpinsurance.co.th/images/banner/JP_1809130432461229.jpg" alt="...">
+                                </div>
+                                <div class="item">
+                                    <img src="https://www.jpinsurance.co.th/images/banner/JP_1805071128557636.jpg" alt="...">
+                                </div>
+                            </div>
+                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div>
+                    </div>
+                    {% else %}
+                    <h2 class="m-5">กรุณาเข้าสู่ระบบ</h2>
+                    <a href="/login/" class="btn btn-light">เข้าสู่ระบบ</a>
+                    <a href="/signup/" class="btn btn-warning">สมัครสมาชิก</a><br><br>{% endif %}
+                </div>
+            </div>
+        </div>
+        <br><br><br><br><br><br><br>
+    </div>
+
+</body>
+{% endblock %}

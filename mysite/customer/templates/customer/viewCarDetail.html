@@ -1,0 +1,22 @@
+{% extends "mysite/base.html" %}
+{% block content %}
+
+
+<body class="bg-gray">
+    <div class="bg-white">
+        <div class="container mt-5">
+            <br />
+            <h1>ข้อมูลรถยนต์ {{ car.id }}</h1>
+            <hr>
+            ทะเบียน :{{ car.number }}<br />
+            province :{{ car.province }}<br />
+            model :{{ car.model }}<br />
+            sit :{{ car.sit }}<br />
+
+            <hr>
+            <button type="button" class="btn btn-warning">แก้ไขข้อมูล</button>
+            <br />
+            <br />
+        </div>
+    </div>
+    {% endblock %}

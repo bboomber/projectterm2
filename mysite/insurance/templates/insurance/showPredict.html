@@ -1,0 +1,91 @@
+{% extends "mysite/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load static %}
+
+<div class="container">
+    <br>
+    <div class="col-sm-12">
+        <div class="form-group">
+            <div class="input-group date" id="div-start-date" data-target-input="nearest" style="justify-content: center">
+                <div class="col-3">
+                    <label for="div-start-date">Select start date:</label>
+                </div>
+                <div class="input-group col-5">
+                    <input type="text" id="start-date" class="form-control datepicker-here" data-language='en' data-min-view="months" data-view="months" data-date-format="MM yyyy" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group date" id="div-end-date" data-target-input="nearest" style="justify-content: center">
+                <div class="col-3">
+                    <label for="div-end-date">Select end date:</label>
+                </div>
+                <div class="input-group col-5">
+                    <input type="text" id="end-date" class="form-control datepicker-here" data-language='en' data-min-view="months" data-view="months" data-date-format="MM yyyy" />
+                </div>
+            </div>
+            <br>
+            <div class="input-group" style="justify-content: center"><button onclick="btnDidTapped()" type="button" class="btn btn-primary">พยากรณ์</button></div>
+        </div>
+    </div>
+
+    <h1 id="predict-title" align="center"></h1>
+    <canvas id="predictChart"></canvas>
+    <br><br>
+</div>
+
+<script src="{% static 'employee_control/js/predictGraphJS.js' %}"></script>
+<script>
+    var minDate = new Date("2017-01-01")
+    var maxDate = new Date("2017-12-31")
+    var startMonth = ""
+    var startYear = ""
+    var endMonth = ""
+    var endYear = ""
+
+    $('#start-date').datepicker({
+        language: 'en',
+        minDate: minDate,
+        maxDate: maxDate,
+        autoClose: true,
+        onSelect: function(fd, date) {
+            startMonth = date.getMonth() + 1;
+            startYear = date.getFullYear();
+        }
+    })
+
+    $('#end-date').datepicker({
+        language: 'en',
+        minDate: minDate,
+        maxDate: maxDate,
+        autoClose: true,
+        onSelect: function(fd, date) {
+            endMonth = date.getMonth() + 1;
+            endYear = date.getFullYear();
+        }
+    })
+
+    $(document).ready(function() {
+        showGraphWithInsure()
+    });
+
+    function btnDidTapped() {
+        let insure_list = {{ insure_list|safe }}
+        let months = {{ months|safe }}
+        let new_month = months.slice(startMonth - 1, endMonth);
+        let new_insure = insure_list[2017].slice(startMonth - 1, endMonth);
+
+        showGraph(new_month, new_insure)
+    }
+
+    function showGraphWithInsure() {
+        $('#predict-title').text("ผลพยากรณ์ยอดขายปี " + 2017);
+        let insure_list = {{ insure_list|safe }}
+        showGraph({{ months|safe }}, insure_list[2017])
+    }
+
+</script>
+{% endblock %}
+
+

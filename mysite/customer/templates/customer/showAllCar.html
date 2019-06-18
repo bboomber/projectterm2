@@ -1,0 +1,38 @@
+{% extends "mysite/base.html" %}
+{% block content %}
+<div class="container">
+    <div class="row col-md-12">
+            <h1>รถยนต์ทั้งหมด</h1>
+        <table class="table table-striped tableStyle">
+            <thead>
+                <tr>
+                    <th>รหัสรถยนต์</th>
+                    <th>ทะเบียนรถ</th>
+                    <th>ยี่ห้อ</th>
+                    <th class="text-center">Action</th>
+                </tr>
+            </thead>
+            
+            {% if car_list %}
+            <ul>
+                {% for car in car_list %}
+                <tr>
+                    <td><a href="/car/{{ car.id }}">{{car.id}}</a></td>
+                    <td>{{ car.car_number }}</td>
+                    <td>{{ car.brand }}</td>
+                    <td class="text-center"><a class='btn btn-info btn-xs' href="/car/{{ car.id }}"><span class="glyphicon glyphicon-edit"></span>
+                            Edit</a> 
+                            <a href="#" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span>
+                            Del</a></td>
+                </tr>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>No Car here.</p>
+            {% endif %}
+        </table>
+
+
+    </div>
+</div>
+{% endblock %}

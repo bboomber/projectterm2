@@ -1,0 +1,32 @@
+{% extends "mysite/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<div class="container mt-5">
+        <a href="/promotion/add" class="btn btn-info">เพิ่มโปรโมชั่นใหม่</a>
+
+{% if pro_list %}
+{% for pro in pro_list %}
+
+<div class="card mb-3 mt-3">
+    <h5 class="card-header">Promotion : {{ pro.promotion_name }}</h5>
+    <div class="card-body">
+        <h5 class="card-title">รหัสแพ็กเกจ : {{ pro.id }}</h5>
+        <p class="card-text">
+            วันหมดอายุ: {{ pro.end_date }}<br />
+            รายละเอียด: {{ pro.detail }}</p>
+    </div>
+</div>
+
+
+{% endfor %}
+
+{% else %}
+No Package here.
+{% endif %}
+
+</div>
+
+
+{% endblock %}

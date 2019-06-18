@@ -1,0 +1,14 @@
+{% extends "mysite/base.html" %} {% load crispy_forms_tags %} {% block content %} {% load static %}
+
+<h1>ลูกค้าใหม่</h1>
+
+<div class="container">
+
+    {% csrf_token %} {{ tranForm|crispy }}
+    <h3>กดปุ่มสิ</h3>
+
+    <button type="submit" class="btn btn-primary">submit</button>
+    </form>
+</div>
+
+{% endblock %}

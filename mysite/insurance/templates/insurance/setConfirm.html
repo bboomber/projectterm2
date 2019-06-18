@@ -1,0 +1,53 @@
+{% extends "mysite/base.html" %} {% block content %}  {% load static %}
+
+
+<body class="bg-gray">
+    <div class="bg-white">
+        <div class="container mt-5">
+            <br />
+            <h1>หน้าอนุมัติกรมธรรม์ {{ insure.doc_nbr }}</h1>
+            <hr>
+            <div class="row">
+                <div class="col-sm">
+                    เลขกรมธรรม์: {{ insure.doc_nbr }}
+                </div>
+                <div class="col-sm">
+                    ทะเบียนรถยนต์ : {{ insure.car_number }}
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col-sm">
+                        บริษัทประกันภัย : {{ insure.company_order }}
+                    </div>
+                    <div class="col-sm">
+                        ราคา : {{ insure.price }} บาท
+                    </div>
+                </div>
+            <div class="row">
+                <div class="col-sm">
+                    ราคาสุทธิ : {{ insure.total_price }} บาท
+                </div>
+                <div class="col-sm">
+                    วันที่ออกงาน: {{ insure.post_date }}
+                </div>
+            </div>
+            นายหน้า : {{ emp.fname }}<br>
+            รถยนต์: {{ car.car_cc }}<br>
+            ลูกค้า: {{ cus.fname }} {{ cus.lname }}<br>
+            แพ็กเกจ: {{ pack.package_name }}<br>
+            <hr>
+            <h4>หลักฐานการโอนเงิน</h4>
+            {% if pic %}<img src="../../static/employee_control/{{ pic.pic_balance }}" width="500px"> {% endif %}
+            <hr>
+            <form method="POST">
+                การอนุมัติกรมธรรม์
+                {% csrf_token %}
+                <button name="subject" class="btn btn-info" type="submit" value="yes">อนุมัติ</button>
+                <button name="subject" class="btn btn-warning" type="submit" value="no">ไม่อนุมัติ</button>
+            </form>
+            <br />
+            <br />
+        </div>
+    </div>
+    </body>
+    {% endblock %}

@@ -1,0 +1,45 @@
+{% extends "mysite/base.html" %} {% load crispy_forms_tags %} {% block content %}
+
+
+<div class="content-section container">
+    <form method="POST">
+        <br>
+        <fieldset class="form=group">
+            <legend class="border-bottom mb-4">เพิ่มแพคเกจใหม่</legend>
+            {% csrf_token %}
+            <div class="row">
+                <div class="col">
+                    {{ form.package_id|as_crispy_field }}
+                </div>
+                <div class="col">
+                    {{ form.package_name|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    {{ form.company_name|as_crispy_field }}
+                </div>
+                <div class="col">
+                    {{ form.package_cc|as_crispy_field }}
+                </div>
+                <div class="col">
+                    {{ form.package_type|as_crispy_field }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    {{ form.price|as_crispy_field }}
+                </div>
+                <div class="col">
+                    {{ form.detail|as_crispy_field }}
+                </div>
+            </div>
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-info" type="submit">ยืนยัน</button>
+        </div>
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends "mysite/base.html" %} {% load crispy_forms_tags %} {% block content %} {% load static %}
+
+<body class="bg-gray2">
+    <div class="container">
+        <br><br>
+        <h2 align="center">ออกกรมธรรม์</h2><br>
+        <form method="POST" enctype='multipart/form-data'>
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                    <div class="card-header bg-darkblue text-white" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        <h4 class="mb-0">
+                            ข้อมูลลูกค้า
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col">
+                                            {{ form.cus_fname|as_crispy_field }}
+                                        </div>
+                                        <div class="col">
+                                            {{ form.cus_lname|as_crispy_field }}
+                                        </div>
+                                        <div class="col">
+                                            {{ form.cus_id_card|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                    {{ form.cus_address|as_crispy_field }}
+                                    <div class="row">
+                                        <div class="col">
+                                            {{ form.cus_province|as_crispy_field }}
+                                        </div>
+                                        <div class="col">
+                                            {{ form.cus_zipcode|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            {{ form.cus_phone|as_crispy_field }}
+                                        </div>
+                                        <div class="col">
+                                            {{ form.cus_email|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header bg-darkblue text-white collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" id="headingTwo">
+                        <h4 class="mb-0">
+                            ข้อมูลรถยนต์
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <h3>ข้อมูลรถยนต์</h3>
+                                    <div class="row">
+                                        <div class="col">
+                                            {{ form.car_number|as_crispy_field }}
+                                        </div>
+                                        <div class="col">
+                                            {{ form.car_province|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            {{ form.car_model|as_crispy_field }}
+                                        </div>
+                                        <div class="col">
+                                            {{ form.car_brand|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">
+                                            {{ form.car_type|as_crispy_field }}
+                                        </div>
+                                        <div class="col">
+                                            {{ form.car_cc|as_crispy_field }}
+                                        </div>
+                                        <div class="col">
+                                            {{ form.car_sit|as_crispy_field }}
+                                        </div>
+                                    </div>
+                                    {{ form.car_chassis_number|as_crispy_field }}
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header bg-darkblue text-white" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        <h4 class="mb-0">
+                            ข้อมูลการชำระเงิน
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <h3>แพ็คเกจ</h3>
+                                    {{ form.package_id|as_crispy_field }}
+                                    <h3>ข้อมูลประกันภัย</h3>
+                                    {{ form.pic_balance|as_crispy_field }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div align="center">
+                    <button type="submit" class="btn btn-primary mt-3">ตกลง</button>
+                    <a href="/" class="btn btn-danger mt-3"> ยกเลิก </a>
+                </div>
+            </div>
+            {% csrf_token %}
+        </form>
+    </div>
+</body>
+
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "mysite/base.html" %} {% block content %}
+
+
+<body class="bg-gray">
+    <div class="bg-white">
+        <div class="container mt-5">
+            <br />
+            <h1>ข้อมูลกรมธรรม์ {{ insure.doc_nbr }}</h1>
+            <hr> เลขกรมธรรม์ :{{ insure.doc_nbr }}<br />
+            ชื่อนายหน้า :{{ insure.agent_code.fname }}<br /> 
+            วันที่ :{{ insure.post_date }}<br /> 
+            บริษัท :{{ insure.company_order }}<br />
+            แพ็กเกจ {{ insure.package_id.package_name }}<br />
+            ราคา {{ insure.price }}<br />
+            ทะเบียนรถ {{ insure.car_id.car_number }}<br />
+            ชื่อลูกค้า {{ insure.cus_id.fname }} {{ insure.cus_id.lname }}
+
+            <hr>
+            <a href="/insure/edit/{{insure.id}}" class="btn btn-warning">แก้ไขข้อมูล</a>
+            <a href="/pdf/{{ insure.id }}" class="btn btn-info" target="_blank"> save เป็น pdf</a>
+            <br />
+            <br />
+        </div>
+    </div>
+    {% endblock %}

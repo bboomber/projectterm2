@@ -1,0 +1,16 @@
+{% extends "mysite/base.html" %}
+{% block content %}
+<div class="container">
+    <h1>Register Page</h1>
+    <form action="completed" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        <div class="form-group">
+            <label for="{{ field.id }}">{{ field.name }}</label>
+            <input type="text" class="form-control" id="{{ field.id }}" placeholder="{{ field.name }}">
+        </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">ok</button>
+    </form>
+</div>
+{% endblock %}
